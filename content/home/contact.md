@@ -26,7 +26,7 @@ content:
 
   # Contact details (edit or remove options as required)
   email: junhanhuang19@fudan.edu.cn
-  phone: 153 592 311 31
+  phone: +8615359231131
   address:
     street: 220 Handan Rd
     city: Shanghai
