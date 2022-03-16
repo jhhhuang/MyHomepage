@@ -27,7 +27,7 @@ education:
   courses:
   - course: BSc in Physics
     institution: Fudan University
-    year: 2019
+    year: 2019-present
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
