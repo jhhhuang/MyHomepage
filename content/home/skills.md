@@ -22,7 +22,7 @@ feature:
   name: Python
 - description: 70%
   icon: terminal
-  icon_pack: fab
+  icon_pack: fas
   name: C/C++
 - description: 50%
   icon: camera-retro
