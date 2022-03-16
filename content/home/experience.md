@@ -22,7 +22,7 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
-  - title: Pulse compression with solitary modes in nonlinear multi-pass cell
+  - title: Pulse compression using solitary modes in nonlinear multi-pass cell
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
     company_url: ''
     location: Fudan University
@@ -33,6 +33,15 @@ experience:
        * Performed the NLSE simulation to verify the stability of the eigenmodes.
        * Currently building the experimental setup.
 
+  - title: Blind FROG Algorithm
+    company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
+    company_url: ''
+    location: Fudan University
+    date_start: '2021-05-01'
+    date_end: '2021-08-01'
+    description: |2-
+       * Implement the Principle Component Generalized Prijection Algorithm (PCGPA) and Ptychographic algorithm for Blind FROG.
+       * Introduce ramdom numbers to optimize the PCGPA Algotithm so that it's suitable for Blind FROG problems.
 design:
   columns: '2'
 ---
