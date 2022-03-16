@@ -28,7 +28,7 @@ content:
   - name: all
     tag: '*'
   - name: ultrafast
-    tag: Ultrafast
+    tag: ultrafast
   - name: courses
   - tag: courses
   - name: other
