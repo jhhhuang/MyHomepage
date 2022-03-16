@@ -36,7 +36,7 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: "19307110193@fudan.edu.cn"
+  link: "mailto:19307110193@fudan.edu.cn"
 #- icon: twitter
 #  icon_pack: fab
 #  link: https://twitter.com/GeorgeCushen
@@ -68,4 +68,3 @@ I'm a physics junior at [Fudan University](https://www.fudan.edu.cn/).
 My research interests include light-matter interactions, ultarfast and strongfield physics. 
 I'm also interested in ultracold atomic physics, quantum computation and quantum information.
 
-# {{< icon name="download" pack="fas" >}} Download my {{< staticref "uploads/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
