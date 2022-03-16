@@ -25,9 +25,8 @@ experience:
   - title: Pulse compression using solitary modes in nonlinear multi-pass cell
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
     company_url: ''
-    company_logo: ''
     location: Fudan University
-    date_start: '2021-08'
+    date_start: '2021-08-01'
     date_end: ''
     description: |2-
        * Used the moified Fox-Li iteration algorithm to find the eigenmodes of nonliear multi-pass cell with Kerr media.
