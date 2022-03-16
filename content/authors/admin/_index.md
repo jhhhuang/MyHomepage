@@ -36,7 +36,7 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: "mailto:19307110193@fudan.edu.cn"
+  link: "mailto:junhanhuang19@fudan.edu.cn"
 - icon: instagram
   icon_pack: fab
   link: "https://www.instagram.com/jhhhhhhhuang/"
