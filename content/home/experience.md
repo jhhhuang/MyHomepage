@@ -22,7 +22,7 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
-  - title: CEO
+  - title: Pulse compression using solitary modes in nonlinear multi-pass cell
     company: Supervised by Prof. Zhensheng Tao
     company_url: ''
     company_logo: org-gc
@@ -30,11 +30,9 @@ experience:
     date_start: '2021-08'
     date_end: ''
     description: |2-
-        Responsibilities include:
-        
-        * Analysing
-        * Modelling
-        * Deploying
+       * Used the moified Fox-Li iteration algorithm to find the eigenmodes of nonliear multi-pass cell with Kerr media.
+       * Performed the NLSE simulation to verify the stability of the eigenmodes.
+       * Currently building the experimental setup.
 
 design:
   columns: '2'
