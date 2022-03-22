@@ -40,8 +40,8 @@ experience:
     date_start: '2021-05-01'
     date_end: '2021-08-01'
     description: |2-
-       * Implement the Principle Component Generalized Prijection Algorithm (PCGPA) and Ptychographic algorithm for Blind FROG.
-       * Introduce ramdom numbers to optimize the PCGPA Algotithm so that it's suitable for Blind FROG problems.
+       * Implemented the Principle Component Generalized Prijection Algorithm (PCGPA) and Ptychographic algorithm for Blind FROG.
+       * Introduced ramdom numbers to optimize the PCGPA Algotithm so that it's suitable for Blind FROG problems.
 design:
   columns: '2'
 ---
