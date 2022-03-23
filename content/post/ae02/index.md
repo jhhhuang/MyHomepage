@@ -35,6 +35,5 @@ tags:
 - Academic
 
 categories:
-- notes
+- Advanced ED
 ---
-ae02.pdf
