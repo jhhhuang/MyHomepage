@@ -1,5 +1,5 @@
 ---
-title: lecture notes on advanced ED 02
+title: [Advanced ED] lecture notes 02
 subtitle: Green's function, dydadic Green's function
 
 # Summary for listings and search engines
