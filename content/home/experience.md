@@ -33,6 +33,13 @@ experience:
        * Performed the NLSE simulation to verify the stability of the eigenmodes, i.e., the formation of solitons and its stability.
        * Currently building the experimental setup.
 
+  - title: Solid state High-order Sideband Harmonic Generation
+    company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
+    company_url: ''
+    location: Fudan University
+    date_start: '2021-04-01'
+    date_end: ''
+    
   - title: Blind FROG (Frequency Resolved Optical Gating) Algorithm
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
     company_url: ''
@@ -40,7 +47,7 @@ experience:
     date_start: '2021-05-01'
     date_end: '2021-08-01'
     description: |2-
-       * Implemented the Principle Component Generalized Prijection Algorithm (PCGPA) and Ptychographic algorithm for Blind FROG.
+       * Implemented the Principle Component Generalized Projection Algorithm (PCGPA) and Ptychographic algorithm for Blind FROG.
        * Introduced ramdom numbers to optimize the PCGPA Algotithm so that it's suitable for Blind FROG problems.
 design:
   columns: '2'
