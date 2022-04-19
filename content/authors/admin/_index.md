@@ -14,7 +14,7 @@ organizations:
   url: https://www.fudan.edu.cn/
 
 # Short bio (displayed in user profile at end of posts)
-bio: AMO Physics
+bio: Ultrafast & AMO Physics
 
 # Interests to show in About widget
 interests:
