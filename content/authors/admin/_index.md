@@ -21,7 +21,6 @@ interests:
 - Ultrafast Physics
 - Ultracold Atomic Physics
 - Quantum Computation
-- Non-Hermitian Physics
 
 # Education to show in About widget
 education:
@@ -70,5 +69,5 @@ highlight_name: true
 
 I'm a physics junior at [Fudan University](https://www.fudan.edu.cn/). 
 My research interests include light-matter interactions, ultarfast and strongfield physics. 
-I'm also interested in ultracold atomic physics, non-hermitian physics, quantum simulation and quantum computation.
+I'm also interested in ultracold atomic physics, quantum simulation and quantum computation.
 
