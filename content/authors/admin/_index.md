@@ -19,8 +19,8 @@ bio: Ultrafast & AMO Physics
 # Interests to show in About widget
 interests:
 - Ultrafast Physics
-- Ultracold Atomic Physics
-- Quantum Computation
+- Strong-correlated systems
+- Light-matter interactions
 
 # Education to show in About widget
 education:
