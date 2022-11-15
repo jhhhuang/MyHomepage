@@ -14,7 +14,7 @@ organizations:
   url: https://www.fudan.edu.cn/
 
 # Short bio (displayed in user profile at end of posts)
-bio: Ultrafast & AMO Physics
+bio: Ultrafast & Condensed Matter Physics
 
 # Interests to show in About widget
 interests:
@@ -68,4 +68,4 @@ highlight_name: true
 ---
 
 I'm a physics senior at [Fudan University](https://www.fudan.edu.cn/). 
-My research interests focuse on understanding emergent phenomena in strong-correlated electron systems and quantum materials with ultrafast spectroscopy.
+My research interests focuse on understanding emergent phenomena in superconductors, strong-correlated electron systems and quantum materials with ultrafast spectroscopy.
