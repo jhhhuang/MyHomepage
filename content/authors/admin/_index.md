@@ -67,7 +67,5 @@ email: ""
 highlight_name: true
 ---
 
-I'm a physics junior at [Fudan University](https://www.fudan.edu.cn/). 
-My research interests include light-matter interactions, ultarfast and strongfield physics. 
-I'm also interested in ultracold atomic physics, quantum simulation and quantum computation.
-
+I'm a physics senior at [Fudan University](https://www.fudan.edu.cn/). 
+My research interests focuse on understanding emergent phenomena in strong-correlated electron systems and quantum materials with ultrafast spectroscopy.
