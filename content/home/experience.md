@@ -22,6 +22,16 @@ date_format: Jan 2006
 #   Leave `date_end` empty if it's your current employer.
 #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
 experience:
+  - title: simulation of AOM THz pulse shaping system
+    company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
+    company_url: ''
+    location: Fudan University
+    date_start: '2022-06-01'
+    date_end: '2022-09-01'
+    description: |2-
+       * Developed a matrix method for Fresnel diffraction with high accuracy, which can be used in simulating near-field geometric optics.
+       * Developed a simulation platform for AOM (acousto-optic modulators) pulse shaping system with arbitary geometric setup.
+
   - title: Femtosecond laser pulse compression using solitary modes in nonlinear multi-pass cell
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
     company_url: ''
