@@ -29,7 +29,7 @@ experience:
     date_start: '2022-06-01'
     date_end: '2022-09-01'
     description: |2-
-       * Developed a matrix method for Fresnel diffraction with high accuracy, which can be used in simulating near-field geometric optics.
+       * Developed a matrix method for Fresnel diffraction with higher accuracy, which can be used in simulating near-field geometric optics.
        * Developed a simulation platform for AOM (acousto-optic modulators) pulse shaping system with arbitrary geometric setup.
 
   - title: Femtosecond laser pulse compression using solitary modes in nonlinear multi-pass cell
