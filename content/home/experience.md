@@ -30,7 +30,7 @@ experience:
     date_end: '2022-09-01'
     description: |2-
        * Developed a matrix method for Fresnel diffraction with high accuracy, which can be used in simulating near-field geometric optics.
-       * Developed a simulation platform for AOM (acousto-optic modulators) pulse shaping system with arbitary geometric setup.
+       * Developed a simulation platform for AOM (acousto-optic modulators) pulse shaping system with arbitrary geometric setup.
 
   - title: Femtosecond laser pulse compression using solitary modes in nonlinear multi-pass cell
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
