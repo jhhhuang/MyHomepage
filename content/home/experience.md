@@ -30,7 +30,7 @@ experience:
     date_end: ''
     description: |2-
        * Used the moified Fox-Li iteration algorithm to find the eigenmodes of nonliear multi-pass cell with Kerr media.
-       * Performed the NLSE simulation to verify the stability of the eigenmodes, i.e., the formation of solitons and its stability.
+       * Performed the NLSE simulation to verify the stability of the eigenmodes, i.e., the formation of soliton and its stability.
        * Currently building the experimental setup.
 
   - title: Solid state High-order Sideband Harmonic Generation
@@ -40,7 +40,7 @@ experience:
     date_start: '2021-04-01'
     date_end: ''
     description: |2-
-       * Help with data measurement and data analysis.
+       * Helped with data measurement and data analysis.
 
   - title: Blind FROG (Frequency Resolved Optical Gating) Algorithm
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
