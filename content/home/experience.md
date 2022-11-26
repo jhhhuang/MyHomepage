@@ -43,7 +43,7 @@ experience:
        * Performed the NLSE simulation to verify the stability of the eigenmodes, i.e., the formation of soliton and its stability.
        * Currently building the experimental setup.
 
-  - title: Solid state High-order Sideband Harmonic Generation
+  - title: Solid state high-order sideband harmonic generation
     company: Supervised by Prof. [Zhensheng Tao](https://phys.fudan.edu.cn/16/4b/c7605a136779/page.htm)
     company_url: ''
     location: Fudan University
