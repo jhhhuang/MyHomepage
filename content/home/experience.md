@@ -50,6 +50,7 @@ experience:
     date_start: '2021-04-01'
     date_end: ''
     description: |2-
+       * Studied the SFA (strong-field approximation) theory.
        * Helped with data measurement and data analysis.
 
   - title: Blind FROG (Frequency Resolved Optical Gating) Algorithm
