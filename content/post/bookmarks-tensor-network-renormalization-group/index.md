@@ -1,7 +1,8 @@
 ---
 title: "[Bookmark] Tensor network renormalization group"
-subtitle: Tensor renormalization group (TRG) for square lattice
+subtitle: Tensor renormalization group (TRG) for square lattice.
 date: 2022-11-27T05:59:39.837Z
+summary: Tensor renormalization group (TRG) for square lattice.
 draft: false
 featured: false
 authors:
