@@ -10,7 +10,7 @@ authors:
 tags:
   - Academic
 categories:
-  - Bookmark
+  - Bookmarks
 image:
   filename: featured
   focal_point: Smart
