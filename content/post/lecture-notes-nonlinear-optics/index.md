@@ -6,7 +6,8 @@ draft: false
 featured: false
 tags:
   - Academic
-categories: []
+categories:
+  - Nonlinear Optics
 image:
   filename: featured
   focal_point: Smart
