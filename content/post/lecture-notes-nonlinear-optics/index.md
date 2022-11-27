@@ -7,7 +7,7 @@ featured: false
 tags:
   - Academic
 categories:
-  - Nonlinear Optics
+  - Lecture notes
 image:
   filename: featured
   focal_point: Smart
