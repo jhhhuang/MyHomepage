@@ -70,7 +70,9 @@ $$
 $$
 {{< math >}}
 
+
 ## 本构关系
+
 线性材料频域下的本构关系可以写为
 
 {{< math >}}
@@ -117,6 +119,7 @@ $$
 {{< math >}}
 
 ## 格林函数
+
 如果只考虑体系的 {{< math >}}$\displaystyle \epsilon${{< math >}} ，（ {{< math >}}$\displaystyle \mu =\mu _{0}${{< math >}} ），宏观Maxwell方程可以写为
 
 {{< math >}}
@@ -176,6 +179,7 @@ $$
 于是所有的问题都转化为了对（并矢）格林函数的求解。同时我们可以看到，格林函数是不依赖于源的具体形式的，只跟方程的形式，即体系有关（ {{< math >}}$\displaystyle \mathcal{L}${{< math >}} ， {{< math >}}$\displaystyle \stackrel {\leftrightarrow}{\rho }${{< math >}} ）。格林函数可以理解为按照某种规则对空间源的分布进行求和，所有的响应叠加起来就是我们要求解的场。
 
 ## 并矢格林函数的形式
+
 出于简单，我们考虑三维空间中的各向同性介质。Maxwell方程为
 
 {{< math >}}
