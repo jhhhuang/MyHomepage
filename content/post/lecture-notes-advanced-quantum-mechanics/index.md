@@ -4,6 +4,11 @@ date: 2022-11-27T13:18:44.238Z
 summary: L﻿ecture notes on Advanced Quantum Mechanics.
 draft: false
 featured: false
+
+tags:
+  - Academic
+categories:
+  - Lecture notes
 image:
   filename: featured
   focal_point: Smart
