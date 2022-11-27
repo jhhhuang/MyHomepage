@@ -35,5 +35,5 @@ tags:
 - Academic
 
 categories:
-- Advanced ED
+- Lecture notes
 ---
