@@ -16,5 +16,5 @@ image:
   focal_point: Smart
   preview_only: false
 ---
-*  An﻿ overview of tensor network: <https://tensornetwork.org/>
-* T﻿RG for square lattice: [\* https://tensornetwork.org/trg/](https://tensornetwork.org/trg/)
+* An﻿ overview of tensor network: <https://tensornetwork.org/>
+* T﻿RG for square lattice: <https://tensornetwork.org/trg/>
