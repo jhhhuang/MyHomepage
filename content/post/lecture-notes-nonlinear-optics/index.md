@@ -1,7 +1,7 @@
 ---
-title: "[Lecture notes] Nonlinear optics"
+title: "[Lecture notes] Nonlinear Optics"
 date: 2022-11-27T10:19:23.454Z
-summary: L﻿ecture notes on nonliear optics.
+summary: Lecture notes on nonliear optics.
 draft: false
 featured: false
 tags:
@@ -12,15 +12,15 @@ image:
   focal_point: Smart
   preview_only: false
 ---
-L﻿ecture notes on nonlinear optics by Chuanshan Tian, Fudan University.
+Lecture notes on nonlinear optics by Chuanshan Tian, Fudan University.
 
-* N﻿onlinear oscillator model.
-* 2﻿nd & 3rd order nonlinear processes.
-* W﻿ave equation description of nonliear optics.
-* S﻿FG, DFG, OPA.
-* R﻿aman scattering and Brillouin scattering.
-* .﻿.....
+* Nonlinear oscillator model.
+* 2nd & 3rd order nonlinear processes.
+* Wave equation description of nonliear optics.
+* SFG, DFG, OPA.
+* Raman scattering and Brillouin scattering.
+* ......
 
-T﻿he mathcha link:
+The mathcha link:
 
 <https://www.mathcha.io/editor/Eo3mSoQU4QCE0OlppiMGlM0BI6J6vX6tqEN9O9>
