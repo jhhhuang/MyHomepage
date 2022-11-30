@@ -365,25 +365,24 @@ B( x) =e^{ix}\left( -x^{-1} -3ix^{-2} +3x^{-3}\right)
 $$
 {{< math >}}
 于是
+
 {{< math >}}
 $$
 \stackrel {\leftrightarrow}{G}(\mathbf{r} ,\mathbf{r} ',\omega ) \\
 
-\=-\frac{1}{3k^{2}} \delta (\mathbf{R})\stackrel {\leftrightarrow}{I} +\frac{k}{4\pi }\left\[\stackrel {\leftrightarrow}{I} A( kR) +\frac{\mathbf{RR}}{R^{2}} B( kR)\right]
+=-\frac{1}{3k^{2}} \delta (\mathbf{R})\stackrel {\leftrightarrow}{I} +\frac{k}{4\pi }\left\[\stackrel {\leftrightarrow}{I} A( kR) +\frac{\mathbf{RR}}{R^{2}} B( kR)\right]
 $$
 {{< math >}}
 根据 $\displaystyle 1/R$ 衰减的速度，我们可以将格林函数分为近场，中场，远场区域
 {{< math >}}
 $$
-\stackrel {\leftrightarrow}{G}(\mathbf{r} ,\mathbf{r} ',\omega ) =\stackrel {\leftrightarrow}{G}*{\text{NF}} +\stackrel {\leftrightarrow}{G}*{\text{IF}} +\stackrel {\leftrightarrow}{G}*{\text{FF}}\
+\stackrel {\leftrightarrow}{G}(\mathbf{r} ,\mathbf{r} ',\omega ) =\stackrel {\leftrightarrow}{G}_{\text{NF}} +\stackrel {\leftrightarrow}{G}_{\text{IF}} +\stackrel {\leftrightarrow}{G}_{\text{FF}} \\
 \stackrel {\leftrightarrow}{G}*{\text{NF}} \\
 
-\=\frac{e^{ikR}}{4\pi R}\frac{1}{k^{2} R^{2}}\left( -\stackrel {\leftrightarrow}{I} +\frac{3\mathbf{RR}}{R^{2}}\right)\
-\stackrel {\leftrightarrow}{G}*{\text{IF}} \\*
-
-*\=\frac{e^{ikR}}{4\pi R}\frac{i}{kR}\left(\stackrel {\leftrightarrow}{I} -\frac{3\mathbf{RR}}{R^{2}}\right)\
+=\frac{e^{ikR}}{4\pi R}\frac{1}{k^{2} R^{2}}\left( -\stackrel {\leftrightarrow}{I} +\frac{3\mathbf{RR}}{R^{2}}\right)\\
+\stackrel {\leftrightarrow}{G}*{\text{IF}} \\
+\=\frac{e^{ikR}}{4\pi R}\frac{i}{kR}\left(\stackrel {\leftrightarrow}{I} -\frac{3\mathbf{RR}}{R^{2}}\right)\\
 \stackrel {\leftrightarrow}{G}*{\text{FF}} \\
-
-\=\frac{e^{ikR}}{4\pi R}\left(\stackrel {\leftrightarrow}{I} -\frac{\mathbf{RR}}{R^{2}}\right)
+=\frac{e^{ikR}}{4\pi R}\left(\stackrel {\leftrightarrow}{I} -\frac{\mathbf{RR}}{R^{2}}\right)
 $$
 {{< math >}}
