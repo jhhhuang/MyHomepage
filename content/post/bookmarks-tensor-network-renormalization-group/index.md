@@ -18,3 +18,4 @@ image:
 ---
 * An﻿ overview of tensor network: <https://tensornetwork.org/>
 * T﻿RG for square lattice: <https://tensornetwork.org/trg/>
+* Code of T﻿RG for Ising model: <https://github.com/smorita/TRG_Ising_2D>
