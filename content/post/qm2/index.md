@@ -4,7 +4,8 @@ date: 2022-11-27T13:18:44.238Z
 summary: L﻿ecture notes on Advanced Quantum Mechanics.
 draft: false
 featured: false
-
+authors:
+  - admin
 tags:
   - Academic
 categories:
