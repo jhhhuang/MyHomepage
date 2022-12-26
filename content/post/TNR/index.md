@@ -15,4 +15,8 @@ image:
   focal_point: Smart
   preview_only: false
 ---
-T﻿he tensor network renormalization group study for q-state clock model. To be continued...
+T﻿he tensor network renormalization group study for q-state clock model. 
+
+W﻿e failed to perform the Loop-TNR algorithm in <https://doi.org/10.1103/PhysRevLett.118.110504>
+
+To be continued...
