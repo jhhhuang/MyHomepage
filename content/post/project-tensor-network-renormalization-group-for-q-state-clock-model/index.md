@@ -4,6 +4,12 @@ date: 2022-12-26T12:48:50.283Z
 summary: To be continued...
 draft: false
 featured: false
+authors:
+  - admin
+tags:
+  - Academic
+categories:
+  - Projects
 image:
   filename: featured
   focal_point: Smart
