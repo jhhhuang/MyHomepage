@@ -4,6 +4,8 @@ date: 2022-11-27T10:19:23.454Z
 summary: Lecture notes on nonliear optics.
 draft: false
 featured: false
+authors:
+  - admin
 tags:
   - Academic
 categories:
