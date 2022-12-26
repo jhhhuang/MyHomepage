@@ -35,8 +35,8 @@ content:
     country: China
     country_code: CN
   coordinates:
-    latitude: '31.29725466450779'
-    longitude: '121.50358561090677'
+    latitude: '31.297188'
+    longitude: '121.503353'
 
 design:
   columns: '2'
