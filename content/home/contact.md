@@ -42,7 +42,7 @@ design:
   columns: '2'
  
 <script src="lib/js/jquery.min.js"></script> <script src="lib/js/bootstrap.min.js"></script>
-<div id="map" style="width:400px;height:400px;background:yellow"></div>
+
 <script>
 function myMap() {
     var uluru = {lat: your-latitude, lng: your-longitude};
@@ -56,5 +56,6 @@ function myMap() {
     });
 }
 </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVe9EfAXvTXXjZTqLg96iZklLOC_jyl3A&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVe9EfAXvTXXjZTqLg96iZklLOC_jyl3A&callback=initMap">
+</script>
 ---
