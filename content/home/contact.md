@@ -1,4 +1,4 @@
----
+--- 
 # An instance of the Contact widget.
 widget: contact
 
@@ -40,7 +40,7 @@ content:
 
 design: 
   columns: '2'
- 
+
 <script src="lib/js/jquery.min.js"></script> <script src="lib/js/bootstrap.min.js"></script>
 
 <script>
@@ -58,4 +58,4 @@ function myMap() {
 </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVe9EfAXvTXXjZTqLg96iZklLOC_jyl3A&callback=initMap">
 </script>
----
+--- 
