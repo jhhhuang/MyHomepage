@@ -25,7 +25,7 @@ feature:
   icon_pack: fas
   name: C/C++
 - description: 50%
-  icon: function
+  icon: chart-line
   icon_pack: fas
   name: Modeling
 
