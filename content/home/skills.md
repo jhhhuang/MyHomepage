@@ -25,9 +25,9 @@ feature:
   icon_pack: fas
   name: C/C++
 - description: 50%
-  icon: camera-retro
+  icon: function
   icon_pack: fas
-  name: Photography
+  name: Modeling
 
 
 # Uncomment to use emoji icons.
