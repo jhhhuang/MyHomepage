@@ -38,10 +38,10 @@ content:
     latitude: '31.297188'
     longitude: '121.503353'
 
-design:
-  columns: '2'
+# design:
+#   columns: '2'
  
-<script src="lib/js/jquery.min.js"></script> <script src="lib/js/bootstrap.min.js"></script>
+# <script src="lib/js/jquery.min.js"></script> <script src="lib/js/bootstrap.min.js"></script>
 
 <script>
 function myMap() {
