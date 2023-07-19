@@ -24,7 +24,7 @@ feature:
   icon: terminal
   icon_pack: fas
   name: C/C++
-- description: 50%
+- description: 70%
   icon: chart-line
   icon_pack: fas
   name: Modeling
