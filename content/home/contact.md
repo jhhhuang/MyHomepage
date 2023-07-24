@@ -28,15 +28,15 @@ content:
   email: jhhuang@stu.pku.edu.cn
   phone: +8615359231131
   address:
-    street: 220 Handan Rd
-    city: Shanghai
-    region: Yangpu District
-    postcode: '200433'
+    street: 209 Chengfu Rd
+    city: Beijing
+    region: Haidian District
+    postcode: '100871'
     country: China
     country_code: CN
   coordinates:
-    latitude: '31.297188'
-    longitude: '121.503353'
+    latitude: '39.99260453229613'
+    longitude: '116.31665637171456'
 
 # design:
 #   columns: '2'
