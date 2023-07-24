@@ -9,7 +9,7 @@ interests:
 social:
   - icon: envelope
     icon_pack: fas
-    link: mailto:junhanhuang19@fudan.edu.cn
+    link: mailto:jhhuang@stu.pku.edu.cn
   - icon: instagram
     icon_pack: fab
     link: https://www.instagram.com/jhhhhhhhuang/
