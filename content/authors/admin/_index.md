@@ -18,9 +18,9 @@ social:
     link: https://github.com/jhhhuang
   - display:
       header: false
-    link: https://www.zhihu.com/people/huo-jian-hua-74-97
-    icon_pack: fa-brands
-    icon: fa-zhihu
+    link: https://twitter.com/NontrivialNFT
+    icon_pack: fab
+    icon: twitter
 organizations:
   - name: Peking University
     url: https://www.pku.edu.cn/
