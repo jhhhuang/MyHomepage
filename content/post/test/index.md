@@ -1,6 +1,6 @@
 ---
 title: "Gaussian Beam Calculator"
-date: 2024-05-08T13:18:44.238Z
+date: 2022-05-08T13:18:44.238Z
 summary: A calculator for focusing of Gaussian beam. 
 draft: false
 featured: false
