@@ -23,29 +23,20 @@ image:
     <title>Unit Conversions</title>
 </head>
 <body>
-    <h1>Unit Conversions</h1>
     <form name="conversion">
-        <table cellpadding="5" align="center" style="border-width:0px" bordercolor="#CCCCCC">
+        <table cellpadding="2" align="center" style="border-width:1px" bordercolor="#CCCCCC">
             <tbody>
                 <tr>
-                    <td><span style="font-size:10pt">eV: </span></td>
-                    <td><input name="eV" onkeyup="eVconvert()" value="1" size="15"></td>
-                    <td><span style="font-size:10pt">nm: </span></td>
-                    <td><input name="nm" onkeyup="nmconvert()" value="1240" size="15"></td>
-                    <td><span style="font-size:10pt">cm<sup>-1</sup>: </span></td>
-                    <td><input name="wavnum" onkeyup="wavnumconvert()" value="8065.6" size="15"></td>
-                    <td><span style="font-size:10pt">fs: </span></td>
-                    <td><input name="fs" onkeyup="fsconvert()" value="4.136" size="15"></td>
+                    <td><span style="font-size:10pt">eV: <input name="eV" onkeyup="eVconvert()" value="1" size="15"> </span></td>
+                    <td><span style="font-size:10pt">nm: <input name="nm" onkeyup="nmconvert()" value="1240" size="15"> </span></td>
+                    <td><span style="font-size:10pt">cm<sup>-1</sup>: <input name="wavnum" onkeyup="wavnumconvert()" value="8065.6" size="15"> </span></td>
+                    <td><span style="font-size:10pt">fs: <input name="fs" onkeyup="fsconvert()" value="4.136" size="15"> </span></td>
                 </tr>
                 <tr>
-                    <td><span style="font-size:10pt">meV: </span></td>
-                    <td><input name="meV" onkeyup="meVconvert()" value="1000" size="15"></td>
-                    <td><span style="font-size:10pt">µm: </span></td>
-                    <td><input name="micron" onkeyup="micronconvert()" value="1.24" size="15"></td>
-                    <td><span style="font-size:10pt">THz: </span></td>
-                    <td><input name="THz" onkeyup="THzconvert()" value="241.8" size="15"></td>
-                    <td><span style="font-size:10pt">ps: </span></td>
-                    <td><input name="ps" onkeyup="psconvert()" value="0.004" size="15"></td>
+                    <td><span style="font-size:10pt">meV: <input name="meV" onkeyup="meVconvert()" value="1000" size="15"> </span></td>
+                    <td><span style="font-size:10pt">µm: <input name="micron" onkeyup="micronconvert()" value="1.24" size="15"> </span></td>
+                    <td><span style="font-size:10pt">THz: <input name="THz" onkeyup="THzconvert()" value="241.8" size="15"> </span></td>
+                    <td><span style="font-size:10pt">ps: <input name="ps" onkeyup="psconvert()" value="0.004" size="15"> </span></td>
                 </tr>
             </tbody>
         </table>
