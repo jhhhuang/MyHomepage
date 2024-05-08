@@ -48,19 +48,19 @@ image:
         <h2>Inputs</h2>
         <div class="input-container">
             <div class="input-group">
-                <label for="F">\( F \):</label>
+                <label for="F">Focal length \( F \):</label>
                 <input type="number" id="F" step="any" required> <span>mm</span>
             </div>
             <div class="input-group">
-                <label for="l">\( l \):</label>
+                <label for="l">Object distance \( l \):</label>
                 <input type="number" id="l" step="any" required> <span>mm</span>
             </div>
             <div class="input-group">
-                <label for="w0">\( w_0 \):</label>
+                <label for="w0">Input beam radius \( w_0 \):</label>
                 <input type="number" id="w0" step="any" required> <span>mm</span>
             </div>
             <div class="input-group">
-                <label for="lambda">\( \lambda \):</label>
+                <label for="lambda">Wavelength \( \lambda \):</label>
                 <input type="number" id="lambda" step="any" required> <span>nm</span>
             </div>
         </div>
@@ -69,11 +69,11 @@ image:
         <h2>Results</h2>
         <div class="input-container">
             <div class="input-group">
-                <label for="w0_prime">\( w'_0 \):</label>
+                <label for="w0_prime">Output beam radius \( w'_0 \):</label>
                 <span id="w0_prime"></span> mm
             </div>
             <div class="input-group">
-                <label for="l_prime">\( l' \):</label>
+                <label for="l_prime">Image distance \( l' \):</label>
                 <span id="l_prime"></span> mm
             </div>
         </div>
