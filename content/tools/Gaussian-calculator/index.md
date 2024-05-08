@@ -23,9 +23,6 @@ image:
     <title>Gaussian Beam Calculator</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        body {
-            font-family: "Times New Roman", Times, serif;
-        }
         .input-group {
             display: flex;
             align-items: center;
@@ -38,7 +35,6 @@ image:
         #result {
             margin-top: 20px;
             font-size: 18px;
-            text-align: center;
         }
     </style>
 </head>
