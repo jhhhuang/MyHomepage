@@ -42,7 +42,7 @@ image:
 </head>
 <body>
     <div id="input">
-        <h2>Inputs</h2>
+        <h2 style="font-size: 15pt;">Input</h2>
         <div class="input-container">
             <div class="input-group">
                 <label for="F">Focal length \( F \):</label>
@@ -63,7 +63,7 @@ image:
         </div>
     </div>
     <div id="result">
-        <h2>Results</h2>
+        <h2 style="font-size: 15pt;">Result</h2>
         <div class="input-container">
             <div class="input-group">
                 <label for="w0_prime">Output beam radius \( w'_0 \):</label>
