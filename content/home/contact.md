@@ -26,7 +26,6 @@ content:
 
   # Contact details (edit or remove options as required)
   email: jhhuang@stu.pku.edu.cn
-  phone: +8615359231131
   address:
     street: 209 Chengfu Rd
     city: Beijing
