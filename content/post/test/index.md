@@ -1,7 +1,7 @@
 ---
-title: "Gaussian Beam Calculators"
-date: 2022-11-27T13:18:44.238Z
-summary: 
+title: "Gaussian Beam Calculator"
+date: 2024-05-08T13:18:44.238Z
+summary: A calculator for focusing of Gaussian beam. 
 draft: false
 featured: false
 authors:
@@ -26,29 +26,57 @@ image:
             font-family: "Times New Roman", Times, serif;
             text-align: center;
         }
-        form {
-            text-align: left;
-            display: inline-block;
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            margin-right: 10px;
         }
         #result {
             margin-top: 20px;
             font-size: 18px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Gaussian Beam Calculator</h1>
-    <form id="inputForm">
-        <label for="F">F:</label>
-        <input type="number" id="F" step="any" required> mm<br><br>
-        <label for="l">l:</label>
-        <input type="number" id="l" step="any" required> mm<br><br>
-        <label for="w0">w<sub>0</sub>:</label>
-        <input type="number" id="w0" step="any" required> mm<br><br>
-        <label for="lambda">λ:</label>
-        <input type="number" id="lambda" step="any" required> nm<br><br>
-    </form>
-    <div id="result"></div>
+    <div id="input">
+        <h2>Inputs</h2>
+        <div class="input-container">
+            <div class="input-group">
+                <label for="F">\( F \):</label>
+                <input type="number" id="F" step="any" required> <span>mm</span>
+            </div>
+            <div class="input-group">
+                <label for="l">\( l \):</label>
+                <input type="number" id="l" step="any" required> <span>mm</span>
+            </div>
+            <div class="input-group">
+                <label for="w0">\( w_0 \):</label>
+                <input type="number" id="w0" step="any" required> <span>mm</span>
+            </div>
+            <div class="input-group">
+                <label for="lambda">\( \lambda \):</label>
+                <input type="number" id="lambda" step="any" required> <span>nm</span>
+            </div>
+        </div>
+    </div>
+    <div id="result">
+        <h2>Results</h2>
+        <div class="input-container">
+            <div class="input-group">
+                <label for="w0_prime">\( w'_0 \):</label>
+                <span id="w0_prime"></span> mm
+            </div>
+            <div class="input-group">
+                <label for="l_prime">\( l' \):</label>
+                <span id="l_prime"></span> mm
+            </div>
+        </div>
+    </div>
     <script>
         // 获取输入框元素
         var FInput = document.getElementById('F');
@@ -56,7 +84,8 @@ image:
         var w0Input = document.getElementById('w0');
         var lambdaInput = document.getElementById('lambda');
         // 获取结果显示区域元素
-        var resultDiv = document.getElementById('result');
+        var w0PrimeSpan = document.getElementById('w0_prime');
+        var lPrimeSpan = document.getElementById('l_prime');
         // 添加输入框的input事件监听器
         [FInput, lInput, w0Input, lambdaInput].forEach(function(input) {
             input.addEventListener('input', function() {
@@ -71,8 +100,9 @@ image:
             var l_prime = F + ((l - F) * Math.pow(F, 2)) / ((l - F) ** 2 + ((Math.PI * Math.pow(w0, 2)) / lambda) ** 2);
             var w0_prime_squared = (Math.pow(F, 2) * Math.pow(w0, 2)) / ((l - F) ** 2 + ((Math.PI * Math.pow(w0, 2)) / lambda) ** 2);
             var w0_prime = Math.sqrt(w0_prime_squared) * 1000; // 转换为毫米
-            // 显示结果
-            resultDiv.innerHTML = "<p>w'<sub>0</sub>:" + w0_prime.toFixed(5) + " mm</p>" + "<p>l':" + (l_prime * 1000).toFixed(5) + " mm</p>";
+            // 更新结果显示
+            w0PrimeSpan.textContent = w0_prime.toFixed(5);
+            lPrimeSpan.textContent = (l_prime * 1000).toFixed(5);
         }
     </script>
 </body>
