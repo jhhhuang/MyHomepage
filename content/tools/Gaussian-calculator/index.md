@@ -28,13 +28,15 @@ image:
             align-items: center;
             justify-content: center;
             margin-bottom: 10px;
+            font-size: 10pt;
         }
         .input-group label {
             margin-right: 10px;
+            font-size: 10pt;
         }
         #result {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 10pt;
         }
     </style>
 </head>
