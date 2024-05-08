@@ -25,7 +25,6 @@ image:
     <style>
         body {
             font-family: "Times New Roman", Times, serif;
-            text-align: center;
         }
         .input-group {
             display: flex;
