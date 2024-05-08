@@ -1,9 +1,19 @@
 ---
-title = "test"
-date = "2017-12-29T12:15:02-00:00"
-categories = [“test”]
-tags = [“test”]
-layout = “hyde-master”
+title: "test"
+date: 2022-11-27T13:18:44.238Z
+summary: L﻿ecture notes on Advanced Quantum Mechanics.
+draft: false
+featured: false
+authors:
+  - admin
+tags:
+  - Academic
+categories:
+  - Lecture notes
+image:
+  filename: featured
+  focal_point: Smart
+  preview_only: false
 ---
 <!DOCTYPE HTML>
 <html>
