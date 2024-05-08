@@ -13,6 +13,9 @@ main:
   - name: Posts
     url: '#posts'
     weight: 40
+  - name: Tools
+    url: '#tools'
+    weight: 45
   - name: Contact
     url: '#contact'
     weight: 50
