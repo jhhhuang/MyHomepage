@@ -110,8 +110,8 @@ image:
                 nm.value = roundfive(c / THz.value * (1e-12) * (1e9));
                 micron.value = roundfive(c / THz.value * (1e-12) * (1e6));
                 wavnum.value = roundfive(h * THz.value * (1e12) / (h * c * 100));
-                fs.value = roundfive(1 / THz.value * (1e12) * (1e15));
-                ps.value = roundfive(1 / THz.value * (1e12) * (1e12));
+                fs.value = roundfive(1 / (THz.value * 1e12) * (1e15));
+                ps.value = roundfive(1 / (THz.value * 1e12) * (1e12));
             }
         }
         function fsconvert() {
