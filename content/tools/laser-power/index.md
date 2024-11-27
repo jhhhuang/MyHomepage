@@ -81,7 +81,6 @@ image:
         </div>
     </form>
     <div class="result" id="result"></div>
-
     <script>
         function calculate() {
             // Get input values
@@ -90,7 +89,6 @@ image:
             const r0 = parseFloat(document.getElementById('r0').value) * 1e-6; // Convert μm to meters
             const P = parseFloat(document.getElementById('P').value) * 1e-3; // Convert mW to W
             const frep = parseFloat(document.getElementById('frep').value);
-
             // Validate input
             if (isNaN(P1) || isNaN(P2) || isNaN(r0) || isNaN(P) || isNaN(frep)) {
                 document.getElementById('result').innerHTML = `<p class="error">Please enter all values correctly.</p>`;
@@ -100,15 +98,12 @@ image:
                 document.getElementById('result').innerHTML = `<p class="error">Error: \(P_2\) must be less than \(P_1\).</p>`;
                 return;
             }
-
             // Beam radius calculation
             const lnFactor = Math.log(1 / (1 - (P2 / P1)));
             const w = Math.sqrt(2) * r0 / Math.sqrt(lnFactor);
-
             // Laser fluence calculation in J/m^2
             const fluenceJPerM2 = P / (frep * (Math.PI * Math.pow(w, 2) / 2));
             const fluenceMJPerCM2 = fluenceJPerM2 * 0.1; // Convert to mJ/cm^2
-
             // Display results
             document.getElementById('result').innerHTML = `
                 <div>
