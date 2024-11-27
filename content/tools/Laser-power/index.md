@@ -15,14 +15,15 @@ image:
   focal_point: Smart
   preview_only: false
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laser Beam Calculator</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- MathJax script without async -->
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -128,9 +129,10 @@ image:
                     <p>Laser Fluence: <strong>${fluenceMJPerCM2.toFixed(6)} mJ/cm²</strong></p>
                 </div>
             `;
+
+            // Force MathJax to render formulas
+            MathJax.typeset();
         }
     </script>
 </body>
 </html>
-
-
