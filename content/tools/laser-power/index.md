@@ -75,7 +75,7 @@ image:
             </div>
             <div class="input-group">
                 <label for="pulseEnergy">Pulse Energy (\(E\)):</label>
-                <span id="pulseEnergy"></span> mJ
+                <span id="pulseEnergy"></span> μJ
             </div>
             <div class="input-group">
                 <label for="fluence">Laser Fluence:</label>
