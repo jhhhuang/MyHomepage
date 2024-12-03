@@ -117,7 +117,7 @@ image:
             // 计算单脉冲能量 (E)
             if (!isNaN(P) && !isNaN(frep) && frep > 0) {
                 var pulseEnergy = P / frep; // 单脉冲能量公式 E = P / frep
-                pulseEnergySpan.textContent = (pulseEnergy * 1e3).toFixed(5); // 转换为 mJ
+                pulseEnergySpan.textContent = (pulseEnergy * 1e6).toFixed(3); // 转换为 uJ
             } else {
                 pulseEnergySpan.textContent = "N/A ";
             }
