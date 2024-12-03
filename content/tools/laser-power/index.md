@@ -58,11 +58,11 @@ image:
             </div>
             <div class="input-group">
                 <label for="P">Laser power (\(P\)):</label>
-                <input type="number" id="P" step="any" required> <span>mW</span>
+                <input type="number" id="P" step="any"> <span>mW</span>
             </div>
             <div class="input-group">
                 <label for="frep">Repetition rate (\(f_{\text{rep}}\)):</label>
-                <input type="number" id="frep" step="any" required> <span>Hz</span>
+                <input type="number" id="frep" step="any"> <span>Hz</span>
             </div>
         </div>
     </div>
@@ -72,6 +72,10 @@ image:
             <div class="input-group">
                 <label for="w">Beam Radius (\(w\)):</label>
                 <span id="w"></span> μm
+            </div>
+            <div class="input-group">
+                <label for="pulseEnergy">Pulse Energy (\(E\)):</label>
+                <span id="pulseEnergy"></span> mJ
             </div>
             <div class="input-group">
                 <label for="fluence">Laser Fluence:</label>
@@ -88,6 +92,7 @@ image:
         var frepInput = document.getElementById('frep');
         // 获取结果显示区域元素
         var wSpan = document.getElementById('w');
+        var pulseEnergySpan = document.getElementById('pulseEnergy');
         var fluenceSpan = document.getElementById('fluence');
         // 添加输入框的input事件监听器
         [P1Input, P2Input, r0Input, PInput, frepInput].forEach(function(input) {
@@ -101,21 +106,29 @@ image:
             var r0 = parseFloat(r0Input.value) * 1e-6; // μm -> 米
             var P = parseFloat(PInput.value) * 1e-3; // mW -> W
             var frep = parseFloat(frepInput.value);
-            // 检查输入是否合法
-            if (isNaN(P1) || isNaN(P2) || isNaN(r0) || isNaN(P) || isNaN(frep) || P2 >= P1) {
-                wSpan.textContent = "Invalid input";
-                fluenceSpan.textContent = "Invalid input";
-                return;
+            // 计算光束半径 (w)
+            if (!isNaN(P1) && !isNaN(P2) && !isNaN(r0) && P2 < P1) {
+                var lnFactor = Math.log(1 / (1 - P2 / P1));
+                var w = Math.sqrt(2) * r0 / Math.sqrt(lnFactor);
+                wSpan.textContent = (w * 1e6).toFixed(5); // 转换为 μm
+            } else {
+                wSpan.textContent = "N/A ";
             }
-            // 计算光束半径
-            var lnFactor = Math.log(1 / (1 - P2 / P1));
-            var w = Math.sqrt(2) * r0 / Math.sqrt(lnFactor);
-            // 计算激光能量密度 (mJ/cm²)
-            var fluenceJPerM2 = P / (frep * (Math.PI * Math.pow(w, 2) / 2));
-            var fluenceMJPerCM2 = fluenceJPerM2 * 0.1;
-            // 更新结果
-            wSpan.textContent = (w * 1e6).toFixed(5); // 转换为 μm
-            fluenceSpan.textContent = fluenceMJPerCM2.toFixed(6);
+            // 计算单脉冲能量 (E)
+            if (!isNaN(P) && !isNaN(frep) && frep > 0) {
+                var pulseEnergy = P / frep; // 单脉冲能量公式 E = P / frep
+                pulseEnergySpan.textContent = (pulseEnergy * 1e3).toFixed(5); // 转换为 mJ
+            } else {
+                pulseEnergySpan.textContent = "N/A ";
+            }
+            // 计算激光能量密度 (Laser Fluence)
+            if (!isNaN(P) && !isNaN(frep) && frep > 0 && !isNaN(w)) {
+                var fluenceJPerM2 = P / (frep * (Math.PI * Math.pow(w, 2) / 2));
+                var fluenceMJPerCM2 = fluenceJPerM2 * 0.1; // 转换为 mJ/cm²
+                fluenceSpan.textContent = fluenceMJPerCM2.toFixed(6);
+            } else {
+                fluenceSpan.textContent = "N/A ";
+            }
         }
     </script>
 </body>
