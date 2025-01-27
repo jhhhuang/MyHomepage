@@ -36,6 +36,5 @@ email: ""
 superuser: true
 highlight_name: true
 ---
-
 I'm a Ph.D. student at [Peking University](https://www.pku.edu.cn/). I got my bachelor degree in Physics at [Fudan University](https://www.fudan.edu.cn/).
-My research interests focuse on understanding emergent phenomena in superconductors, strong-correlated electron systems and quantum materials with ultrafast and THz spectroscopy.
+My research interests focus on understanding emergent phenomena in superconductors, strong-correlated electron systems and quantum materials with ultrafast and THz spectroscopy.
