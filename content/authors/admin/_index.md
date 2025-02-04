@@ -10,17 +10,12 @@ social:
   - icon: envelope
     icon_pack: fas
     link: mailto:jhhuang@stu.pku.edu.cn
-  - icon: instagram
-    icon_pack: fab
-    link: https://www.instagram.com/jhhhhhhhuang/
   - icon: github
     icon_pack: fab
     link: https://github.com/jhhhuang
-  - display:
-      header: false
-    link: https://twitter.com/NontrivialNFT
-    icon_pack: fab
-    icon: twitter
+  - icon: google-scholar
+    icon_pack: ai
+    link: https://scholar.google.com/citations?user=L6Dk7akAAAAJ
 organizations:
   - name: Peking University
     url: https://www.pku.edu.cn/
