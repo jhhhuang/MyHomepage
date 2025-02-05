@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Junhan Huang # Website name
-baseURL: 'https://jhhuang.me/' # Website URL
+baseURL: 'https://jhhuang.xyz/' # Website URL
 
 ############################
 ## LANGUAGE
