@@ -25,7 +25,7 @@ content:
   #    captcha: false
 
   # Contact details (edit or remove options as required)
-  email: jhhuang@stu.pku.edu.cn
+  email: jhhuang AT stu DOT pku DOT edu DOT cn
   address:
     street: 209 Chengfu Rd
     city: Beijing
