@@ -7,11 +7,9 @@ main:
   - name: Home
     url: '#about'
     weight: 10
-  - name: Experience
-    url: '#experience'
+  - name: Publications
+    url: '#publications'
     weight: 20
-  - name: Posts
-    url: '#posts'
     weight: 40
   - name: Tools
     url: '#tools'
