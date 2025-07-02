@@ -20,4 +20,8 @@ header:
 ## Current
 ### [Stabilization and Destabilization of Multimode Solitons in Nonlinear Degenerate Multi-Pass Cavities](https://arxiv.org/abs/2501.13319)
 
-<u>**Junhan Huang**</u>\#, Bingbing Zhu, Shanyue Li, Kun Ding, Zhensheng Tao*. arXiv:2501.13319 (2025).
+<u>**Junhan Huang**</u>\#, Bingbing Zhu, Shanyue Li, Kun Ding, Zhensheng Tao*. arXiv: 2501.13319 (2025).
+
+### [Ultrafast Orbital-Selective Photodoping Melts Charge Order in Overdoped Bi-based Cuprates](https://arxiv.org/abs/2506.04697)
+
+Xinyi Jiang, Qizhi Li, Qingzheng Qiu, Li Yue, <u>**Junhan Huang**</u>, Yiwen Chen, Byungjune Lee, Hyeongi Choi, Xingjiang Zhou, Tao Dong, Nanlin Wang, Hoyoung Jang, Yingying Peng*. arXiv: 2506.04697 (2025).
