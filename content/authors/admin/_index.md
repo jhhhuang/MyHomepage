@@ -32,4 +32,4 @@ superuser: true
 highlight_name: true
 ---
 I'm a Ph.D. student at [Peking University](https://www.pku.edu.cn/). I got my bachelor degree in Physics at [Fudan University](https://www.fudan.edu.cn/).
-I am interested in controlling and uncovering emergent phases in condensed matter systems through strong-field-THz driven collective excitations, such as magnons and phonons. My work aims to understand and manipulate the non-equilibrium dynamics of correlated materials.
+I am interested in controlling and uncovering emergent phases in quantum materials through strong-field-THz driven collective excitations, such as magnons and phonons. My work aims to understand and manipulate the non-equilibrium dynamics of correlated materials.
