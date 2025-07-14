@@ -180,7 +180,7 @@ image:
         micron.value = round_sig(c / (MHz.value * 1e6) * 1e6);
         fs.value = round_sig(1 / (MHz.value * 1e6) * 1e15);
         ps.value = round_sig(1 / (MHz.value * 1e6) * 1e12);
-        K.value = round_sig(h * MHz.value * 1e6 / kB);
+        K.value = round_sig(MHz.value * 1e6 * h / kB); 
       }
     }
 
@@ -188,14 +188,16 @@ image:
       with (document.conversion) {
         eV.value = round_sig(K.value * kB_eV);
         meV.value = round_sig(K.value * kB_eV * 1e3);
-        wavnum.value = round_sig(K.value * 0.69503476);
-        THz.value = round_sig(K.value * 20.836);
-        MHz.value = round_sig(K.value * 20.836 * 1e6);
+        wavnum.value = round_sig(K.value * kB / (h * c * 100));
+        THz.value = round_sig(K.value * kB / h * 1e-12);
+        MHz.value = round_sig(K.value * kB / h * 1e-6);
         nm.value = round_sig(h * c / (K.value * kB) * 1e9);
         micron.value = round_sig(h * c / (K.value * kB) * 1e6);
         fs.value = round_sig(h / (K.value * kB) * 1e15);
         ps.value = round_sig(h / (K.value * kB) * 1e12);
       }
+    }
+
     }
   </script>
 </body>
