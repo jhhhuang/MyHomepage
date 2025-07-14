@@ -24,6 +24,7 @@ image:
   <title>Unit Conversions</title>
 </head>
 <body>
+  <h1 style="text-align:center">Unit Conversions</h1>
   <form name="conversion">
     <table cellpadding="10" align="center" style="border:1px solid #CCC">
       <tbody>
@@ -47,10 +48,10 @@ image:
 
   <script>
     const c = 299792458;
-    const h = 4.135667516e-15; // eV·s
-    const kB = 1.380649e-23; // J/K
+    const h = 4.135667516e-15;
+    const kB = 1.380649e-23;
     const eV_to_J = 1.602176634e-19;
-    const kB_eV = kB / eV_to_J; // eV/K
+    const kB_eV = kB / eV_to_J;
 
     function round_sig(x, sig = 7) {
       return Number.parseFloat(x).toPrecision(sig);
@@ -72,50 +73,106 @@ image:
 
     function meVconvert() {
       with (document.conversion) {
-        eV.value = meV.value * 1e-3;
-        eVconvert();
+        const eV_val = meV.value * 1e-3;
+        eV.value = round_sig(eV_val);
+        nm.value = round_sig(h * c / eV_val * 1e9);
+        micron.value = round_sig(h * c / eV_val * 1e6);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        THz.value = round_sig(eV_val / h * 1e-12);
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        K.value = round_sig(eV_val / kB_eV);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
 
     function nmconvert() {
       with (document.conversion) {
-        eV.value = h * c / nm.value * 1e9;
-        eVconvert();
+        const eV_val = h * c / nm.value * 1e9;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        micron.value = round_sig(nm.value * 1e-3);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        THz.value = round_sig(eV_val / h * 1e-12);
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        K.value = round_sig(eV_val / kB_eV);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
 
     function micronconvert() {
       with (document.conversion) {
-        eV.value = h * c / micron.value * 1e6;
-        eVconvert();
+        const eV_val = h * c / micron.value * 1e6;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        nm.value = round_sig(micron.value * 1e3);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        THz.value = round_sig(eV_val / h * 1e-12);
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        K.value = round_sig(eV_val / kB_eV);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
 
     function wavnumconvert() {
       with (document.conversion) {
-        eV.value = wavnum.value * h * c * 100;
-        eVconvert();
+        const eV_val = wavnum.value * h * c * 100;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        nm.value = round_sig(h * c / eV_val * 1e9);
+        micron.value = round_sig(h * c / eV_val * 1e6);
+        THz.value = round_sig(eV_val / h * 1e-12);
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        K.value = round_sig(eV_val / kB_eV);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
 
     function THzconvert() {
       with (document.conversion) {
-        eV.value = h * THz.value * 1e12;
-        eVconvert();
+        const eV_val = h * THz.value * 1e12;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        nm.value = round_sig(h * c / eV_val * 1e9);
+        micron.value = round_sig(h * c / eV_val * 1e6);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        K.value = round_sig(eV_val / kB_eV);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
 
     function MHzconvert() {
       with (document.conversion) {
-        eV.value = h * MHz.value * 1e6;
-        eVconvert();
+        const eV_val = h * MHz.value * 1e6;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        nm.value = round_sig(h * c / eV_val * 1e9);
+        micron.value = round_sig(h * c / eV_val * 1e6);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        THz.value = round_sig(MHz.value / 1e6);
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        K.value = round_sig(eV_val / kB_eV);
       }
     }
 
     function fsconvert() {
       with (document.conversion) {
-        eV.value = h / fs.value * 1e15;
-        eVconvert();
+        const eV_val = h / fs.value * 1e15;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        nm.value = round_sig(h * c / eV_val * 1e9);
+        micron.value = round_sig(h * c / eV_val * 1e6);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        THz.value = round_sig(eV_val / h * 1e-12);
+        ps.value = round_sig(fs.value / 1e3);
+        K.value = round_sig(eV_val / kB_eV);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
 
@@ -128,10 +185,19 @@ image:
 
     function Kconvert() {
       with (document.conversion) {
-        eV.value = K.value * kB_eV;
-        eVconvert();
+        const eV_val = K.value * kB_eV;
+        eV.value = round_sig(eV_val);
+        meV.value = round_sig(eV_val * 1e3);
+        nm.value = round_sig(h * c / eV_val * 1e9);
+        micron.value = round_sig(h * c / eV_val * 1e6);
+        wavnum.value = round_sig(eV_val / (h * c * 100));
+        THz.value = round_sig(eV_val / h * 1e-12);
+        fs.value = round_sig(h / eV_val * 1e15);
+        ps.value = round_sig(h / eV_val * 1e12);
+        MHz.value = round_sig(eV_val / h * 1e-6);
       }
     }
   </script>
 </body>
 </html>
+
