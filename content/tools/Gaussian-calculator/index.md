@@ -39,7 +39,7 @@ image:
     .input-group input {
       margin-right: 5px;
       font-size: 10pt;
-      width: 120px;
+      width: 90px;
     }
     .input-group select {
       margin-right: 5px;
