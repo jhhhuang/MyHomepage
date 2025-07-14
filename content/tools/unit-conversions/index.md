@@ -24,7 +24,6 @@ image:
   <title>Unit Conversions</title>
 </head>
 <body>
-  <h2 style="font-size: 20px; text-align: center;">Inputs</h2>
   <form name="conversion">
     <table cellpadding="5" align="center" style="border-width:1px" bordercolor="#CCCCCC">
       <tbody>
@@ -33,7 +32,7 @@ image:
           <td><span style="font-size:10pt">nm: <input name="nm" onkeyup="nmconvert()" value="1240" size="15"></span></td>
           <td><span style="font-size:10pt">cm<sup>-1</sup>: <input name="wavnum" onkeyup="wavnumconvert()" value="8065.6" size="15"></span></td>
           <td><span style="font-size:10pt">fs: <input name="fs" onkeyup="fsconvert()" value="4.136" size="15"></span></td>
-          <td><span style="font-size:10pt">MHz: <input name="MHz" onkeyup="MHzconvert()" value="2.418e+5" size="15"></span></td>
+          <td><span style="font-size:10pt">MHz: <input name="MHz" onkeyup="MHzconvert()" value="24179893" size="15"></span></td>
         </tr>
         <tr>
           <td><span style="font-size:10pt">meV: <input name="meV" onkeyup="meVconvert()" value="1000" size="15"></span></td>
@@ -53,7 +52,7 @@ image:
     const kB_eV = 8.617333262e-5;
 
     function roundfive(num) {
-      return (Math.round(num * 100000) / 100000).toFixed(5);
+      return (Math.round(num * 100000) / 100000).toFixed(7);
     }
 
     function eVconvert() {
