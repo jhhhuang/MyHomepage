@@ -52,9 +52,8 @@ image:
     const eV_to_J = 1.602176634e-19;
     const kB_eV = kB / eV_to_J; // eV/K
 
-    function round_sig(num, sig = 7) {
-      if (num === 0) return "0";
-      return Number.parseFloat(num).toPrecision(sig);
+    function round_sig(x, sig = 7) {
+      return Number.parseFloat(x).toPrecision(sig);
     }
 
     function eVconvert() {
@@ -73,63 +72,63 @@ image:
 
     function meVconvert() {
       with (document.conversion) {
-        eV.value = round_sig(meV.value * 1e-3);
+        eV.value = meV.value * 1e-3;
         eVconvert();
       }
     }
 
     function nmconvert() {
       with (document.conversion) {
-        eV.value = round_sig(h * c / nm.value * 1e9);
+        eV.value = h * c / nm.value * 1e9;
         eVconvert();
       }
     }
 
     function micronconvert() {
       with (document.conversion) {
-        eV.value = round_sig(h * c / micron.value * 1e6);
+        eV.value = h * c / micron.value * 1e6;
         eVconvert();
       }
     }
 
     function wavnumconvert() {
       with (document.conversion) {
-        eV.value = round_sig(wavnum.value * h * c * 100);
+        eV.value = wavnum.value * h * c * 100;
         eVconvert();
       }
     }
 
     function THzconvert() {
       with (document.conversion) {
-        eV.value = round_sig(h * THz.value * 1e12);
+        eV.value = h * THz.value * 1e12;
         eVconvert();
       }
     }
 
     function MHzconvert() {
       with (document.conversion) {
-        eV.value = round_sig(h * MHz.value * 1e6);
+        eV.value = h * MHz.value * 1e6;
         eVconvert();
       }
     }
 
     function fsconvert() {
       with (document.conversion) {
-        eV.value = round_sig(h / fs.value * 1e15);
+        eV.value = h / fs.value * 1e15;
         eVconvert();
       }
     }
 
     function psconvert() {
       with (document.conversion) {
-        fs.value = round_sig(ps.value * 1e3);
+        fs.value = ps.value * 1e3;
         fsconvert();
       }
     }
 
     function Kconvert() {
       with (document.conversion) {
-        eV.value = round_sig(K.value * kB_eV);
+        eV.value = K.value * kB_eV;
         eVconvert();
       }
     }
