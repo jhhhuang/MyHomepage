@@ -24,7 +24,6 @@ image:
   <title>Unit Conversions</title>
 </head>
 <body>
-  <h1 style="text-align:center">Unit Conversions</h1>
   <form name="conversion">
     <table cellpadding="10" align="center" style="border:1px solid #CCC">
       <tbody>
