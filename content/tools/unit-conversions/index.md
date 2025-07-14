@@ -25,7 +25,7 @@ image:
 </head>
 <body>
   <form name="conversion">
-    <table cellpadding="10" align="center" style="border-width:1px" bordercolor="#CCCCCC">
+    <table cellpadding="15" align="center" style="border-width:1px" bordercolor="#CCCCCC">
       <tbody>
         <tr>
           <td><span style="font-size:10pt">eV: <input name="eV" onkeyup="eVconvert()" value="1" size="15"></span></td>
@@ -52,7 +52,7 @@ image:
     const kB_eV = 8.617333262e-5;
 
     function roundfive(num) {
-      return (Math.round(num * 100000) / 100000).toFixed(7);
+      return (Math.round(num * 10000000) / 10000000).toFixed(7);
     }
 
     function eVconvert() {
