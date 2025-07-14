@@ -36,7 +36,12 @@ image:
       width: 180px;
       text-align: right;
     }
-    .input-group input, .input-group select {
+    .input-group input {
+      margin-right: 5px;
+      font-size: 10pt;
+      width: 120px;
+    }
+    .input-group select {
       margin-right: 5px;
       font-size: 10pt;
       width: 50px;
