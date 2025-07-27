@@ -184,7 +184,7 @@ image:
         micron.value = round_sig(h * c / eV_val * 1e6);
         wavnum.value = round_sig(eV_val / (h * c * 100));
         THz.value = round_sig(eV_val / h * 1e-12);
-        fs.value = roundfive(ps.value * 1e3);
+        fs.value = round_sig(ps.value * 1e3);
         K.value = round_sig(eV_val / kB_eV);
         MHz.value = round_sig(eV_val / h * 1e-6);
       }
