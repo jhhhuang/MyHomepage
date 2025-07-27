@@ -177,8 +177,15 @@ image:
 
     function psconvert() {
       with (document.conversion) {
-        fs.value = ps.value * 1e3;
-        fsconvert();
+        eV.value = roundfive(h / ps.value * 1e12);
+        meV.value = roundfive(h / ps.value * 1e15);
+        nm.value = roundfive(c * ps.value * 1e-3);
+        micron.value = roundfive(c * ps.value * 1e-6);
+        wavnum.value = roundfive(1 / (ps.value * c * 100) * 1e12);
+        THz.value = roundfive(1 / ps.value);
+        fs.value = roundfive(ps.value * 1e3);
+        MHz.value = roundfive(eV.value / h * 1e-6);
+        K.value = roundfive(eV.value / kB_eV);
       }
     }
 
