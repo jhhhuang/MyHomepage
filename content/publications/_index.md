@@ -28,6 +28,6 @@ Tianchen Hu, Boxuan Li, Shuxiang Xu, Shangfei Wu, Qiong Wu, <u>**Junhan Huang**<
 
 ### [Stabilization and Destabilization of Multimode Solitons in Nonlinear Degenerate Multi-Pass Cavities](https://arxiv.org/abs/2501.13319)
 
-<u>**Junhan Huang**</u>\#, Bingbing Zhu, Shanyue Li, Kun Ding, Zhensheng Tao*. arXiv: 2501.13319 (2025).
+<u>**Junhan Huang**</u>, Bingbing Zhu, Shanyue Li, Kun Ding, Zhensheng Tao*. arXiv: 2501.13319 (2025).
 
 
