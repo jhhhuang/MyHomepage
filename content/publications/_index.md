@@ -15,6 +15,8 @@ header:
 ---
 {{< icon name="google-scholar" pack="ai">}}[Google Scholar](https://scholar.google.com/citations?user=L6Dk7akAAAAJ)
 
+<div style="font-size: 14px; line-height: 1.6;">
+
 (\# equal contribution, * corresponding author)
 
 ## Current
@@ -30,4 +32,4 @@ Tianchen Hu, Boxuan Li, Shuxiang Xu, Shangfei Wu, Qiong Wu, <u>**Junhan Huang**<
 
 <u>**Junhan Huang**</u>, Bingbing Zhu, Shanyue Li, Kun Ding, Zhensheng Tao*. arXiv: 2501.13319 (2025).
 
-
+</div>
