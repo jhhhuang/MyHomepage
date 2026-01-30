@@ -45,6 +45,10 @@ header:
 (\# equal contribution, * corresponding author)
 
 ## Current
+### [Efficient high-harmonic generation in van der Waals ferroelectric NbOI$_2$ crystals](https://arxiv.org/abs/2601.21273)
+
+Tianchen Hu, Feng Li, <u>**Junhan Huang**</u>, Chen Qian, Ruoxuan Ding, Hao Wang, Qiaomei Liu, Qiong Wu, Ruifeng Lu, Chunmei Zhang, Nanlin Wang. arXiv:2601.21273 (2026).
+
 ### [Ultrafast Orbital-Selective Photodoping Melts Charge Order in Overdoped Bi-based Cuprates](https://arxiv.org/abs/2506.04697)
 
 Xinyi Jiang, Qizhi Li, Qingzheng Qiu, Li Yue, <u>**Junhan Huang**</u>, Yiwen Chen, Byungjune Lee, Hyeongi Choi, Xingjiang Zhou, Tao Dong, Nanlin Wang, Hoyoung Jang, Yingying Peng. arXiv: 2506.04697 (2025).
