@@ -3,7 +3,12 @@ title: "Floquet band"
 date: 2026-02-18T12:00:00+08:00
 draft: false
 summary: "Visualization of band engineering via light-matter interactions."
-tags: ["Physics", "PyScript", "Simulation"]
+authors:
+  - admin
+tags:
+  - Playground
+categories:
+  - Playground
 ---
 
 Here is an interactive demonstration of the Floquet band structure.
