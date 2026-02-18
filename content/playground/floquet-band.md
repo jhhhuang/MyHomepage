@@ -1,5 +1,5 @@
 ---
-title: "Floquet band"
+title: "Floquet band engineering"
 date: 2026-02-18T12:00:00+08:00
 draft: false
 summary: "Visualization of band engineering via light-matter interactions."
