@@ -6,10 +6,6 @@ draft: false
 featured: false
 authors:
   - admin
-tags:
-  - Tools
-categories:
-  - Tools
 image:
   filename: featured
   focal_point: Smart
