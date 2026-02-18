@@ -13,12 +13,12 @@ categories:
 
 Here is an interactive demonstration of the Floquet band structure.
 
-<iframe 
-    src="/html/floquet-band.html" 
-    width="100%" 
-    height="950px" 
-    style="border: none; overflow: hidden;"
-    scrolling="no">
-</iframe>
+<script>
+    // 立即跳转到静态 HTML 文件
+    window.location.href = "/html/floquet-band.html";
+</script>
+
+<p>Entering simulation...</p>
+<p>If the page doesn't show up, please <a href="/html/floquet_raw.html">click here</a>.</p>
 
 **Note:** Initial loading may take a few seconds as the Python environment is initializing.
