@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floquet Topological Insulator (Fixed Alpha & Interaction)</title>
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <py-config>
+        packages = ["numpy", "matplotlib", "scipy"]
+    </py-config>
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f6f9; color: #333; }
+        .container { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1300px; margin: 0 auto; }
+        
+        /* 左侧控制面板 */
+        .controls { 
+            flex: 1; min-width: 300px; max-width: 350px;
+            background: white; padding: 25px; 
+            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .control-group { margin-bottom: 20px; }
+        .control-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .value-display { color: #007bff; font-family: monospace; }
+        
+        input[type=range] { width: 100%; cursor: pointer; }
+        
+        /* 状态指示器 */
+        #status {
+            margin-top: 10px; padding: 10px; border-radius: 6px; 
+            text-align: center; font-size: 0.85rem; font-weight: bold;
+            display: none;
+        }
+        .status-computing { background: #fff3cd; color: #856404; display: block !important; }
+        .status-ready { background: #d4edda; color: #155724; display: none; }
+
+        /* 右侧绘图区域 */
+        .plot-area { 
+            flex: 2; min-width: 600px; 
+            background: white; padding: 10px; 
+            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 600px;
+        }
+        
+        /* 覆盖层:初次加载 */
+        #loading-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(255,255,255,0.95); z-index: 9999; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 15px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div>Initializing Python Environment...</div>
+        <div style="font-size: 0.8em; color: #666; margin-top: 5px;">(Downloading NumPy/SciPy, please wait)</div>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <h2>Parameters</h2>
+            
+            <div class="control-group">
+                <div class="control-header">
+                    <label>Delta (Bandgap)</label>
+                    <span id="disp-Delta" class="value-display">7.0</span>
+                </div>
+                <input type="range" id="Delta" min="1" max="10" step="0.1" value="7.0">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header">
+                    <label>t (Hopping)</label>
+                    <span id="disp-t" class="value-display">1.0</span>
+                </div>
+                <input type="range" id="t" min="0.1" max="2" step="0.1" value="1.0">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header">
+                    <label>Omega (Freq)</label>
+                    <span id="disp-Omega" class="value-display">3.0</span>
+                </div>
+                <input type="range" id="Omega" min="0.1" max="15" step="0.1" value="3.0">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header">
+                    <label>E0 (Field Strength)</label>
+                    <span id="disp-E0" class="value-display">2.0</span>
+                </div>
+                <input type="range" id="E0" min="0" max="30" step="0.1" value="2.0">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header">
+                    <label>d (Dipole Moment)</label>
+                    <span id="disp-d" class="value-display">0.1</span>
+                </div>
+                <input type="range" id="d" min="0.05" max="0.5" step="0.05" value="0.1">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header">
+                    <label>n (Floquet Blocks)</label>
+                    <span id="disp-n" class="value-display">2</span>
+                </div>
+                <input type="range" id="n" min="1" max="10" step="1" value="2">
+            </div>
+
+            <div id="status">Calculating...</div>
+            
+        </div>
+
+        <div class="plot-area" id="mpl-target"></div>
+    </div>
+
+    <script>
+        const paramIds = ["Delta", "t", "Omega", "E0", "d", "n"];
+        const statusEl = document.getElementById("status");
+
+        // 1. 初始化:绑定滑块事件
+        paramIds.forEach(id => {
+            const el = document.getElementById(id);
+            const disp = document.getElementById(`disp-${id}`);
+
+            // 'input' 事件:拖动时立即更新数字显示 (纯 JS，零延迟)
+            el.addEventListener('input', () => {
+                disp.innerText = el.value;
+            });
+
+            // 'change' 事件:松开鼠标时，通知 Python 重绘
+            el.addEventListener('change', () => {
+                triggerPythonRedraw();
+            });
+        });
+
+        // 强制重绘按钮
+        document.getElementById('btn-force-redraw').addEventListener('click', triggerPythonRedraw);
+
+        // 触发 Python 重绘的桥梁函数
+        function triggerPythonRedraw() {
+            statusEl.innerText = "Calculating...";
+            statusEl.className = "status-computing";
+            
+            // 使用 setTimeout 让 UI 有机会先渲染出 "Calculating..." 字样
+            // 然后再执行 Python 的阻塞计算
+            setTimeout(() => {
+                // 调用挂载在 window 上的 Python 函数
+                if (window.py_redraw) {
+                    window.py_redraw();
+                }
+            }, 50);
+        }
+
+        // Python 计算完成后调用的回调
+        function onPythonDone() {
+            statusEl.className = "status-ready";
+            statusEl.style.display = "none";
+        }
+        
+        // Python 初始化完成后调用
+        function onPythonInit() {
+            document.getElementById("loading-overlay").style.display = "none";
+        }
+    </script>
+
+    <script type="py">
+        import numpy as np
+        import matplotlib.pyplot as plt
+        from scipy.linalg import eigh
+        from scipy.special import jv
+        from pyscript import display
+        import js
+        from pyodide.ffi import create_proxy
+
+        # 获取 DOM 值的辅助函数
+        def get_val(id):
+            return float(js.document.getElementById(id).value)
+
+        def get_int(id):
+            return int(js.document.getElementById(id).value)
+
+        def run_simulation():
+            # 1. 读取参数
+            Delta = get_val("Delta")
+            t_val = get_val("t")
+            Omega = get_val("Omega")
+            E0 = get_val("E0")
+            d_val = get_val("d")
+            n_blocks = get_int("n")
+
+            # 2. 物理参数设置
+            M = 2*n_blocks + 1
+            num_k = 151 # 奇数个点通常包含 0
+            k_list = np.linspace(-np.pi, np.pi, num_k)
+            a_vals = np.arange(-(M-1)//2, (M-1)//2+1)
+
+            if Omega == 0: A0 = 0
+            else: A0 = (d_val * E0) / Omega 
+
+            E_all = []
+            W_all = [] # 权重
+            
+            # 参考线数据
+            bare_c = Delta/2.0 - 2*t_val*np.cos(k_list)
+            bare_v = -Delta/2.0 + 2*t_val*np.cos(k_list)
+            
+            t_eff = t_val * jv(0, A0)
+            dfke_c = Delta/2.0 - 2*t_eff*np.cos(k_list)
+            dfke_v = -Delta/2.0 + 2*t_eff*np.cos(k_list)
+
+            # RWA/OSE 计算 (简化循环)
+            V_rabi = d_val * E0 / 2.0
+            ose_c_list = []
+            ose_v_list = []
+            for k in k_list:
+                ec, ev = Delta/2.0 - 2*t_val*np.cos(k), -Delta/2.0 + 2*t_val*np.cos(k)
+                # OSE
+                res_c = np.linalg.eigvalsh([[ec, V_rabi], [V_rabi, ev + Omega]])
+                ose_c_list.append(res_c[np.abs(res_c - ec).argmin()])
+                res_v = np.linalg.eigvalsh([[ev, V_rabi], [V_rabi, ec - Omega]])
+                ose_v_list.append(res_v[np.abs(res_v - ev).argmin()])
+            
+            # 3. Full Floquet 计算 (最耗时部分)
+            dim = 2 * M
+            center_idx = M // 2 * 2 
+            
+            # 预计算 Bessel 函数以加速
+            # jv 比较慢，尽量向量化或者少调用，这里还是放在循环里因为结构复杂，但逻辑正确最重要
+            
+            for k_idx, k in enumerate(k_list):
+                HF = np.zeros((dim, dim), dtype=complex)
+                
+                # 构建 Hamiltonian
+                # 优化:利用 numpy 广播或减少 Python 循环会更快，但为了保持逻辑清晰暂保持原样
+                for i in range(dim):      
+                    for j in range(dim):  
+                        n_ph = a_vals[i // 2]
+                        order = i//2 - j//2 
+                        band_i = i % 2
+                        band_j = j % 2
+
+                        if i == j: HF[i, j] += n_ph * Omega
+
+                        if band_i == band_j:
+                            J_val = jv(order, A0)
+                            kinetic = -2*t_val*np.cos(k)*J_val if (order%2==0) else -2j*t_val*np.sin(k)*J_val
+                            sign = 1 if band_i == 0 else -1
+                            static = (Delta/2.0 if band_i == 0 else -Delta/2.0) if i == j else 0
+                            HF[i, j] += static + sign * kinetic
+
+                        if abs(order) == 1 and band_i != band_j:
+                            HF[i, j] += (d_val * E0 / 2.0)
+
+                eigvals, eigvecs = eigh(HF)
+                E_all.append(np.real(eigvals))
+                
+                # 投影权重 (Project to n=0 sector)
+                w = np.sum(np.abs(eigvecs[center_idx:center_idx+2, :])**2, axis=0)
+                W_all.append(w)
+
+            # 4. 数据整理
+            E_all = np.array(E_all).T # shape: (dim, num_k)
+            W_all = np.array(W_all).T # shape: (dim, num_k)
+            
+            # 5. 绘图 (修复透明度问题)
+            plt.close("all")
+            fig, ax = plt.subplots(figsize=(8, 6), dpi=100)
+            
+            # 使用 RGBA 矩阵实现透明度
+            # W_all 归一化到 0-1
+            w_max = np.max(W_all)
+            if w_max == 0: w_max = 1
+            
+            # 展平数组以便一次性 scatter (性能优化)
+            # 注意:Matplotlib scatter 绘制大量点依然会慢
+            # 我们将每一条能带分开画，或者全部展平
+            
+            flat_k = np.tile(k_list, (E_all.shape[0], 1)).flatten()
+            flat_E = E_all.flatten()
+            flat_W = W_all.flatten()
+            
+            # 创建 Colormap
+            cmap = plt.get_cmap('coolwarm')
+            # 获取基础 RGB 颜色 (基于权重值映射颜色，或者如果你想颜色只代表能带位置，可以改)
+            # 原代码逻辑:c=W_all, cmap='coolwarm' -> 权重同时也决定颜色
+            colors = cmap(flat_W / w_max) 
+            
+            # **关键修复**:将 Alpha 通道设置为权重值
+            # 这样权重越低，点越透明
+            colors[:, 3] = flat_W / w_max 
+            
+            # 绘制 Scatter
+            # s=6 点的大小
+            ax.scatter(flat_k, flat_E, c=colors, s=6, edgecolors='none')
+
+            # 绘制参考线
+            ax.plot(k_list, bare_c, 'k--', lw=1, alpha=0.3, label='Bare')
+            ax.plot(k_list, bare_v, 'k--', lw=1, alpha=0.3)
+            ax.plot(k_list, ose_c_list, 'y--', lw=1., alpha=0.8, label='OSE (interband)')
+            ax.plot(k_list, ose_v_list, 'y--', lw=1., alpha=0.8)
+            ax.plot(k_list, dfke_c, 'g-.', lw=1., alpha=0.8, label='DFKE (intraband)')
+            ax.plot(k_list, dfke_v, 'g-.', lw=1., alpha=0.8)
+
+            # 辅助线
+            ax.hlines([-Omega/2, +Omega/2], -np.pi, np.pi, colors='red', linestyles=':', alpha=0.3,label='Photon energy')
+
+            ax.set_xlim(-np.pi, np.pi)
+            ax.set_ylim(-Delta - Omega, Delta + Omega)
+            ax.set_xlabel("Wavevector k")
+            ax.set_ylabel("Quasienergy E")
+            ax.set_title("Floquet Spectrum")
+            ax.legend(loc='upper right', fontsize='small', framealpha=0.9)
+            ax.grid(True, alpha=0.15)
+            plt.tight_layout()
+
+            # 显示到网页
+            display(fig, target="mpl-target", append=False)
+            
+            # 通知 JS 计算完成
+            js.onPythonDone()
+
+        # 将 Python 函数暴露给 JS
+        js.window.py_redraw = create_proxy(run_simulation)
+        
+        # 初始运行
+        run_simulation()
+        js.onPythonInit()
+        
+    </script>
+</body>
+</html>
