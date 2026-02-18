@@ -19,6 +19,6 @@ Here is an interactive demonstration of the Floquet band structure.
 </script>
 
 <p>Entering simulation...</p>
-<p>If the page doesn't show up, please <a href="/html/floquet_raw.html">click here</a>.</p>
+<p>If the page doesn't show up, please <a href="/html/floquet-band.html">click here</a>.</p>
 
 **Note:** Initial loading may take a few seconds as the Python environment is initializing.
