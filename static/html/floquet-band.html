@@ -185,10 +185,10 @@
                     \[
                     \begin{array}{l}
                     H( k) =\begin{pmatrix}
-                    \varepsilon _{v}( k+A( t)) & d\cdotp E( t)\\
-                    d\cdotp E( t) & \varepsilon _{c}( k+A( t))
+                    \varepsilon _{v}( k+eA( t)) & d\cdotp E( t)\\
+                    d\cdotp E( t) & \varepsilon _{c}( k+eA( t))
                     \end{pmatrix}\\
-                    \varepsilon _{c,v}( k) =\pm \Delta/2 \mp 2t\cos( k)
+                    \varepsilon _{v,c}( k) =\pm \Delta \mp 2t\cos( k)
                     \end{array}
                     \]
                 </div>
@@ -357,44 +357,62 @@
                 res_v = np.linalg.eigvalsh([[ev, V_rabi], [V_rabi, ec - Omega]])
                 ose_v_list.append(res_v[np.abs(res_v - ev).argmin()])
             
-            # 3. Full Floquet 计算 (最耗时部分)
+            # 3. Full Floquet 计算 (最耗时部分 - 已完全向量化)
             dim = 2 * M
             center_idx = M // 2 * 2 
             
-            # 预计算 Bessel 函数以加速
-            # jv 比较慢，尽量向量化或者少调用，这里还是放在循环里因为结构复杂，但逻辑正确最重要
+            # === 步骤 3.1: 在 k 循环外部预计算不变的矩阵模板 ===
+            # 创建 i, j 索引网格矩阵，形状均为 (dim, dim)
+            I, J = np.indices((dim, dim))
             
-            for k_idx, k in enumerate(k_list):
-                HF = np.zeros((dim, dim), dtype=complex)
+            # 矩阵化获取各种 order 和 band 属性
+            order_mat = I // 2 - J // 2
+            band_i_mat = I % 2
+            band_j_mat = J % 2
+            
+            # 提前计算全矩阵的 Bessel 函数 (极大减少 scipy 库调用)
+            J_val_mat = jv(order_mat, A0)
+            sign_mat = np.where(band_i_mat == 0, 1, -1)
+            
+            # 初始化三个基础矩阵
+            HF_static = np.zeros((dim, dim), dtype=complex)
+            HF_cos = np.zeros((dim, dim), dtype=complex)
+            HF_sin = np.zeros((dim, dim), dtype=complex)
+
+            # (A) 填充 HF_static (对角线的光子能量、带隙，以及非对角线的层间偶极)
+            # 对角线: 光子能量 n_ph * Omega + 静态带隙 Delta/2 或 -Delta/2
+            n_ph_diag = np.repeat(a_vals, 2) * Omega
+            static_diag = np.tile([Delta/2.0, -Delta/2.0], M)
+            np.fill_diagonal(HF_static, n_ph_diag + static_diag)
+            
+            # 非对角线: interband 偶极相互作用
+            interband_mask = (np.abs(order_mat) == 1) & (band_i_mat != band_j_mat)
+            HF_static[interband_mask] = (d_val * E0 / 2.0)
+
+            # (B) 填充 HF_cos 和 HF_sin (带内动能项的系数)
+            intraband_mask = (band_i_mat == band_j_mat)
+            even_order_mask = (order_mat % 2 == 0)
+            
+            # 偶数阶对应 cos(k)
+            cos_mask = intraband_mask & even_order_mask
+            HF_cos[cos_mask] = sign_mat[cos_mask] * (-2 * t_val) * J_val_mat[cos_mask]
+            
+            # 奇数阶对应 sin(k)
+            sin_mask = intraband_mask & ~even_order_mask
+            HF_sin[sin_mask] = sign_mat[sin_mask] * (-2j * t_val) * J_val_mat[sin_mask]
+
+            # === 步骤 3.2: 极其轻量的 k 循环 ===
+            for k in k_list:
+                # 仅通过简单的矩阵加法和标量乘法构建当前 k 的哈密顿量
+                HF = HF_static + np.cos(k) * HF_cos + np.sin(k) * HF_sin
                 
-                # 构建 Hamiltonian
-                # 优化:利用 numpy 广播或减少 Python 循环会更快，但为了保持逻辑清晰暂保持原样
-                for i in range(dim):      
-                    for j in range(dim):  
-                        n_ph = a_vals[i // 2]
-                        order = i//2 - j//2 
-                        band_i = i % 2
-                        band_j = j % 2
-
-                        if i == j: HF[i, j] += n_ph * Omega
-
-                        if band_i == band_j:
-                            J_val = jv(order, A0)
-                            kinetic = -2*t_val*np.cos(k)*J_val if (order%2==0) else -2j*t_val*np.sin(k)*J_val
-                            sign = 1 if band_i == 0 else -1
-                            static = (Delta/2.0 if band_i == 0 else -Delta/2.0) if i == j else 0
-                            HF[i, j] += static + sign * kinetic
-
-                        if abs(order) == 1 and band_i != band_j:
-                            HF[i, j] += (d_val * E0 / 2.0)
-
                 eigvals, eigvecs = eigh(HF)
                 E_all.append(np.real(eigvals))
                 
                 # 投影权重 (Project to n=0 sector)
                 w = np.sum(np.abs(eigvecs[center_idx:center_idx+2, :])**2, axis=0)
                 W_all.append(w)
-
+            
             # 4. 数据整理
             E_all = np.array(E_all).T # shape: (dim, num_k)
             W_all = np.array(W_all).T # shape: (dim, num_k)
