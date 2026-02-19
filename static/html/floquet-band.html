@@ -7,12 +7,29 @@
     
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <py-config>
         packages = ["numpy", "matplotlib", "scipy"]
     </py-config>
 
     <style>
+        /* Model Block 样式 */
+        .model-block {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        .model-block h2 {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 10px;
+        }
+        .model-block .math-display {
+            font-size: 0.9rem; /* 稍微缩小字号以适应 300px 的面板宽度 */
+            overflow-x: auto;  /* 如果公式太长可以横向滚动，避免撑破 UI */
+            padding: 10px 0;
+        }
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f6f9; color: #333; }
         .container { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1300px; margin: 0 auto; }
         
@@ -68,6 +85,20 @@
     </div>
 
     <div class="container">
+        <div class="model-block">
+            <h2>Model</h2>
+            <div class="math-display">
+                \[
+                \begin{array}{l}
+                H( k) =\begin{pmatrix}
+                \varepsilon _{v}( k+eA( t)) & d\cdotp E( t)\\
+                d\cdotp E( t) & \varepsilon _{c}( k+eA( t))
+                \end{pmatrix}\\
+                \varepsilon _{v,c}( k) =\pm \Delta \mp 2t\cos( k)
+                \end{array}
+                \]
+            </div>
+        </div>
         <div class="controls">
             <h2>Parameters</h2>
             
