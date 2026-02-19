@@ -401,7 +401,7 @@
 
             ax2 = plt.subplot(122)
             level = np.linspace(np.min(data_fft2), 0.5 * np.max(data_fft2), 100)
-            cf2 = ax2.contourf(FT/(omega1/(2*np.pi)), FTAU/(omega1/(2*np.pi)), data_fft2, cmap='terrain_r', levels=level)
+            cf2 = ax2.contourf(FT, FTAU, data_fft2, cmap='terrain_r', levels=level)
             ax2.set_ylabel('Excitation frequency (THz)')
             ax2.set_xlabel('Detection frequency (THz)')
             ax2.set_xlim((0, 4))
