@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driven anharmonic oscillator</title>
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <py-config>
+        packages = ["numpy", "matplotlib", "scipy"]
+    </py-config>
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f6f9; color: #333; }
+        .container { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1400px; margin: 0 auto; }
+        
+        /* 左侧控制面板 */
+        .controls { 
+            flex: 1; min-width: 320px; max-width: 380px;
+            background: white; padding: 25px; 
+            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+        
+        /* 模型公式区块 */
+        .model-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #eee; }
+        .model-block h2 { border-bottom: none; padding-bottom: 0; margin-bottom: 10px; }
+        .math-display { font-size: 0.95rem; overflow-x: auto; padding: 5px 0; color: #444; }
+
+        .control-group { margin-bottom: 18px; }
+        .control-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .value-display { color: #007bff; font-family: monospace; }
+        input[type=range] { width: 100%; cursor: pointer; }
+        
+        /* 1D 状态指示器 */
+        #status {
+            margin-top: 10px; padding: 10px; border-radius: 6px; 
+            text-align: center; font-size: 0.85rem; font-weight: bold;
+            display: none;
+        }
+        .status-computing { background: #fff3cd; color: #856404; display: block !important; }
+        .status-ready { background: #d4edda; color: #155724; display: none; }
+
+        /* 2D 按钮与状态 */
+        .btn-calc {
+            width: 100%; padding: 12px; margin-top: 15px;
+            background-color: #007bff; color: white; font-weight: bold;
+            border: none; border-radius: 6px; cursor: pointer;
+            transition: background 0.2s; font-size: 1rem;
+        }
+        .btn-calc:hover { background-color: #0056b3; }
+        .btn-calc:disabled { background-color: #999; cursor: not-allowed; }
+        
+        #status-2d {
+            margin-top: 10px; padding: 10px; border-radius: 6px; 
+            text-align: center; font-size: 0.85rem; font-weight: bold;
+            background: #cce5ff; color: #004085; display: none;
+        }
+
+        /* 右侧绘图区域容器 */
+        .plots-container {
+            flex: 2; min-width: 650px;
+            display: flex; flex-direction: column; gap: 20px;
+        }
+
+        .plot-area { 
+            background: white; padding: 10px; 
+            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        #mpl-target { min-height: 700px; }
+        #mpl-target-2d { min-height: 350px; display: none; } /* 默认隐藏 2D 画布 */
+        
+        #loading-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(255,255,255,0.95); z-index: 9999; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 15px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <div>Initializing Python Environment...</div>
+        <div style="font-size: 0.8em; color: #666; margin-top: 5px;">(Downloading NumPy/SciPy, please wait)</div>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <h2>Model</h2>
+            <div class="model-block">
+                <div class="math-display">
+                    $$ \ddot{Q} + 2\gamma \dot{Q} + \omega_0^2 Q + a_4 Q^3 = E_{\text{ext}}(t) $$
+                    $$ E_{\text{ext}}(t) = E_0 \exp\left(-\frac{t^2}{t_0^2}\right) \sin(\omega_{\text{THz}} t) $$
+                </div>
+            </div>
+
+            <h2>Parameters</h2>
+            
+            <div class="control-group">
+                <div class="control-header"><label>Phonon freq. (THz)</label><span id="disp-nu0" class="value-display">1.0</span></div>
+                <input type="range" id="nu0" min="0.1" max="5.0" step="0.1" value="1.0">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header"><label>Damping</label><span id="disp-gamma" class="value-display">0.6</span></div>
+                <input type="range" id="gamma" min="0.0" max="2.0" step="0.05" value="0.4">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header"><label>Anharmonicity a4</label><span id="disp-a4" class="value-display">20</span></div>
+                <input type="range" id="a4" min="0" max="100" step="5" value="20">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header"><label>Driving freq. (THz)</label><span id="disp-nu_thz" class="value-display">1.0</span></div>
+                <input type="range" id="nu_thz" min="0.1" max="5.0" step="0.1" value="1.0">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header"><label>Field strength E0</label><span id="disp-E0" class="value-display">80</span></div>
+                <input type="range" id="E0" min="0" max="200" step="5" value="80">
+            </div>
+
+            <div class="control-group">
+                <div class="control-header"><label>Pulse duration (ps)</label><span id="disp-t0" class="value-display">2.0</span></div>
+                <input type="range" id="t0" min="0.25" max="3.5" step="0.05" value="2.0">
+            </div>
+
+            <div id="status">Solving 1D ODE...</div>
+            
+            <button id="btn-calc-2d" class="btn-calc">Calculate 2D Spectrum</button>
+            <div id="status-2d">Calculating 2D Spectrum...<br><small>(It might take 20 ~ 40 s)</small></div>
+
+        </div>
+
+        <div class="plots-container">
+            <div class="plot-area" id="mpl-target"></div>
+            <div class="plot-area" id="mpl-target-2d"></div>
+        </div>
+    </div>
+
+    <script>
+        const paramIds = ["nu0", "gamma", "a4", "nu_thz", "E0", "t0"];
+        const statusEl = document.getElementById("status");
+        const status2dEl = document.getElementById("status-2d");
+        const btn2d = document.getElementById("btn-calc-2d");
+        const plot2dArea = document.getElementById("mpl-target-2d");
+
+        paramIds.forEach(id => {
+            const el = document.getElementById(id);
+            const disp = document.getElementById(`disp-${id}`);
+
+            el.addEventListener('input', () => { disp.innerText = el.value; });
+            el.addEventListener('change', () => { triggerPythonRedraw(); });
+        });
+
+        // 1D 重绘触发
+        function triggerPythonRedraw() {
+            statusEl.innerText = "Solving 1D ODE...";
+            statusEl.className = "status-computing";
+            setTimeout(() => {
+                if (window.py_redraw) window.py_redraw();
+            }, 50);
+        }
+
+        // 2D 计算触发
+        btn2d.addEventListener('click', () => {
+            btn2d.disabled = true;
+            status2dEl.style.display = "block";
+            plot2dArea.style.display = "flex"; // 显示2D区域容器
+            
+            setTimeout(() => {
+                if (window.py_calc_2d) window.py_calc_2d();
+            }, 50);
+        });
+
+        function onPythonDone() {
+            statusEl.className = "status-ready";
+            statusEl.style.display = "none";
+        }
+        
+        function onPython2DDone() {
+            btn2d.disabled = false;
+            status2dEl.style.display = "none";
+            plot2dArea.scrollIntoView({ behavior: 'smooth', block: 'end' }); // 自动滚动到底部看结果
+        }
+
+        function onPythonInit() {
+            document.getElementById("loading-overlay").style.display = "none";
+        }
+    </script>
+
+    <script type="py">
+        import numpy as np
+        import matplotlib.pyplot as plt
+        from matplotlib.colors import TwoSlopeNorm
+        from scipy.fftpack import fft, fftfreq, fft2, fftshift
+        from scipy.interpolate import interp1d
+        from scipy.integrate import solve_ivp
+        from pyscript import display
+        import js
+        from pyodide.ffi import create_proxy
+
+        def get_val(id): return float(js.document.getElementById(id).value)
+
+        # ========================================
+        # 1D & General Utilities
+        # ========================================
+        def get_slice_idx(x, target):
+            return np.argmin(np.abs(x - target))
+
+        def get_uniform_data(t,y):
+            sorted_idx = np.argsort(t)
+            t, y = t[sorted_idx], y[sorted_idx]
+            dt_candidates = np.diff(t)
+            dt = np.min(np.abs(dt_candidates[dt_candidates != 0]))
+            t_min, t_max = t[0], t[-1]
+            n_interp = int(np.round((t_max - t_min) / dt)) + 1
+            t_uniform = np.linspace(t_min, t_max, n_interp)
+            y_uniform = interp1d(t, y, kind='linear', fill_value='extrapolate')(t_uniform)
+            return t_uniform, y_uniform, dt
+
+        def myfft_with_padding(t, y, left_pad=0.0, right_pad=0.0, window_func=None):
+            t_uniform, y_uniform, dt = get_uniform_data(t,y)
+            if window_func is not None:
+                window = window_func(len(t_uniform))
+                y_uniform *= window
+            n_left = int(np.round(left_pad / dt))
+            n_right = int(np.round(right_pad / dt))
+            y_padded = np.pad(y_uniform, (n_left, n_right), mode='constant')
+            N_total = len(y_padded)
+            yfft = fft(y_padded)
+            freq = fftfreq(N_total, dt)
+            half = N_total // 2
+            return freq[:half], yfft[:half]
+
+        def anharm_osc(t, y, omega0, gamma, a4, E0_amp, w_thz, t0_pulse, phi0):
+            x, v = y
+            E_t = E0_amp * np.exp(-((t / t0_pulse) ** 2)) * np.cos(w_thz * t + phi0)
+            return [v, -2 * gamma * v - omega0**2 * x + E_t - a4 * x**3]
+
+        def run_simulation():
+            nu0_val, gamma_val, a4_val = get_val("nu0"), get_val("gamma"), get_val("a4")
+            nu_thz_val, E0_val, t0_val = get_val("nu_thz"), get_val("E0"), get_val("t0")
+
+            omega1, w0, phi0 = 2 * np.pi * nu0_val, 2 * np.pi * nu_thz_val, np.pi / 2
+            times = np.linspace(-20, 20, 1001)
+            EA = E0_val * np.exp(-((times / t0_val) ** 2)) * np.cos(w0 * times + phi0)
+
+            t_span = (np.min(times), np.max(times))
+            sol = solve_ivp(anharm_osc, t_span, [0.0, 0.0], t_eval=times, method="DOP853",
+                            args=(omega1, gamma_val, a4_val, E0_val, w0, t0_val, phi0), 
+                            rtol=1e-4, atol=1e-6)
+            y = sol.y[0]
+
+            plt.close("all")
+            fig = plt.figure(figsize=(8,6), dpi=100)
+            
+            # Subplot 1
+            ax1 = plt.subplot(221)
+            x_pot = np.linspace(-2, 2, 100)
+            Vhar = 0.5 * omega1**2 * x_pot**2
+            ax1.plot(x_pot, Vhar, ':', color='gray', alpha=0.6, lw=2, label='Harmonic')
+            ax1.plot(x_pot, Vhar +1/4* a4_val * x_pot**4, color='#007bff', lw=2, label='Anharmonic')
+            ax1.set_ylim(-2, np.max(Vhar)*1.5)
+            ax1.set_xlabel(r"$Q$")
+            ax1.legend(loc='upper right', fontsize='small'); ax1.grid(True, alpha=0.15)
+
+            # Subplot 2
+            ax2 = plt.subplot(222)
+            w_arr = np.linspace(0, 5, 1000) * 2 * np.pi
+            X_spec = 1 / (w_arr**2 - omega1**2 + 1j * 2 * gamma_val * w_arr)
+            freq_thz, spec_thz = myfft_with_padding(times, EA)
+            ax2.plot(w_arr/(2*np.pi), np.abs(X_spec)/np.max(np.abs(X_spec)), lw=2, label="Oscillator response")
+            ax2.fill_between(freq_thz, 0, np.abs(spec_thz)/np.max(np.abs(spec_thz)), color='gray', alpha=0.3, label="THz spectrum")
+            ax2.set_xlabel("Frequency (THz)"); ax2.set_xlim(0, 5)
+            ax2.legend(loc='upper right', fontsize='small'); ax2.grid(True, alpha=0.15)
+
+            # Subplot 3
+            ax3 = plt.subplot(223)
+            ax3.plot(times, y, color='#007bff', lw=1.5, label=r"Oscillator $Q$")
+            Eenv = np.exp(-((times / t0_val) ** 2))
+            norm_factor = np.max(np.abs(y)) if np.max(np.abs(y)) > 0 else 1
+            ax3.plot(times, Eenv * norm_factor, '--', alpha=0.5, color='red', label="THz Envelope")
+            ax3.set_xlabel("Time (ps)"); ax3.legend(loc='upper right', fontsize='small'); ax3.grid(True, alpha=0.15)
+            ax3.set_xlim((-10,20))
+
+            # Subplot 4
+            ax4 = plt.subplot(224)
+            freq_Q, y_fft = myfft_with_padding(times, y, left_pad=10, right_pad=10, window_func=np.hanning)
+            ax4.plot(freq_Q, np.abs(y_fft)/np.max(np.abs(y_fft)), color='purple', lw=2)
+            ax4.set_xlim(0, 5); ax4.set_xlabel("Frequency (THz)")
+            ax4.grid(True, alpha=0.15)
+
+            plt.tight_layout()
+            display(fig, target="mpl-target", append=False)
+            js.onPythonDone()
+
+        # ========================================
+        # 2D Spectrum Utilities (Optimized)
+        # ========================================
+        def compute_fft2(times, taus, data, t_start=None, t_end=None, tau_start=None, tau_end=None,
+                         pad_settings=None, window_func=None):
+            t_idx_start = get_slice_idx(times, t_start)
+            t_idx_end = get_slice_idx(times, t_end) + 1
+            tau_idx_start = get_slice_idx(taus, tau_start)
+            tau_idx_end = get_slice_idx(taus, tau_end) + 1
+
+            data_slice = data[tau_idx_start:tau_idx_end, t_idx_start:t_idx_end]
+            dtau_ps, dt_ps = taus[1] - taus[0], times[1] - times[0]
+
+            upper_pad = int(np.round(np.abs(pad_settings['upper_pad'] / dtau_ps)))
+            lower_pad = int(np.round(np.abs(pad_settings['lower_pad'] / dtau_ps)))
+            left_pad = int(np.round(np.abs(pad_settings['left_pad'] / dt_ps)))
+            right_pad = int(np.round(np.abs(pad_settings['right_pad'] / dt_ps)))
+
+            if window_func is not None:
+                win_tau = window_func(data_slice.shape[0])
+                win_t = window_func(data_slice.shape[1])
+                data_slice = data_slice * np.outer(win_tau, win_t)
+
+            data_pad = np.pad(data_slice, ((lower_pad, upper_pad), (left_pad, right_pad)), mode='constant')
+            fft2_data = fftshift(fft2(data_pad))
+
+            ntau_p, nt_p = data_pad.shape
+            ftau = fftshift(fftfreq(ntau_p, d=dtau_ps))
+            ft = fftshift(fftfreq(nt_p, d=dt_ps))
+            FT, FTAU = np.meshgrid(ft, ftau)
+
+            return {'fft2': fft2_data, 'FT': FT, 'FTAU': FTAU}
+
+        def anharm_osc_2D(t, y, omega0, gamma, a4, E0_A, E0_B, w_thz, t0_pulse, phi0, tau):
+            x, v = y
+            # 极限优化的 2D 场解析：直接传递两个场强，只计算非零的场
+            E_A = E0_A * np.exp(-((t / t0_pulse) ** 2)) * np.cos(w_thz * t + phi0) if E0_A != 0 else 0
+            E_B = E0_B * np.exp(-(((t + tau) / t0_pulse) ** 2)) * np.cos(w_thz * (t + tau) + phi0) if E0_B != 0 else 0
+            return [v, -2 * gamma * v - omega0**2 * x + (E_A + E_B) - a4 * x**3]
+
+        def calculate_2D():
+            nu0_val, gamma_val, a4_val = get_val("nu0"), get_val("gamma"), get_val("a4")
+            nu_thz_val, E0_val, t0_val = get_val("nu_thz"), get_val("E0"), get_val("t0")
+
+            omega1, w0, phi0 = 2 * np.pi * nu0_val, 2 * np.pi * nu_thz_val, np.pi / 2
+            times = np.linspace(-20, 20, 601)
+            taus = np.linspace(0, 10, 201)
+            t_span = (np.min(times), np.max(times))
+            y0 = [0.0, 0.0]
+            
+            x_A_mat, x_B_mat, x_AB_mat = [], [], []
+
+            # 优化点：只在循环外解 1 次 A 的响应
+            sol_A = solve_ivp(anharm_osc_2D, t_span, y0, t_eval=times, method="DOP853",
+                              args=(omega1, gamma_val, a4_val, E0_val/2, 0.0, w0, t0_val, phi0, 0.0), 
+                              rtol=1e-3, atol=1e-4)
+            x_A_array = sol_A.y[0]
+
+            for tau in taus:
+                sol_B = solve_ivp(anharm_osc_2D, t_span, y0, t_eval=times, method="DOP853",
+                                  args=(omega1, gamma_val, a4_val, 0.0, E0_val/2, w0, t0_val, phi0, tau), 
+                                  rtol=1e-3, atol=1e-4)
+                sol_AB = solve_ivp(anharm_osc_2D, t_span, y0, t_eval=times, method="DOP853",
+                                  args=(omega1, gamma_val, a4_val, E0_val/2, E0_val/2, w0, t0_val, phi0, tau), 
+                                  rtol=1e-3, atol=1e-4)
+                
+                x_A_mat.append(x_A_array)
+                x_B_mat.append(sol_B.y[0])
+                x_AB_mat.append(sol_AB.y[0])
+
+            x_NL_mat = np.array(x_AB_mat) - np.array(x_A_mat) - np.array(x_B_mat)
+
+            # --- 绘图逻辑 ---
+            data = x_NL_mat
+            # data -= data[0,0]
+            vlim = np.max(np.abs(data))
+            if vlim == 0: vlim = 1e-10 # 防除零报错
+            norm = TwoSlopeNorm(vmin=-vlim, vcenter=0.0, vmax=vlim)
+
+            fig2d = plt.figure(figsize=(8,3.5), dpi=100)
+            
+            # 时域二维图
+            ax1 = plt.subplot(121)
+            cf1 = ax1.contourf(times, taus, data, cmap='seismic', levels=100, norm=norm)
+            ax1.set_xlabel('Excitation time (ps)')
+            ax1.set_ylabel('Detection time (ps)')
+            ax1.set_xlim((-10, 20))
+
+            # 频域二维图 (FFT2)
+            result = compute_fft2(times, taus, data, t_start=-10, t_end=30, tau_start=-10, tau_end=10,
+                                  pad_settings={'upper_pad':10, 'lower_pad':10, 'left_pad':10, 'right_pad':10},
+                                  window_func=np.hanning)
+            
+            FT, FTAU, data_fft2 = result['FT'], result['FTAU'], np.abs(result['fft2'])
+
+            ax2 = plt.subplot(122)
+            level = np.linspace(np.min(data_fft2), 0.5 * np.max(data_fft2), 100)
+            cf2 = ax2.contourf(FT/(omega1/(2*np.pi)), FTAU/(omega1/(2*np.pi)), data_fft2, cmap='terrain_r', levels=level)
+            ax2.set_ylabel('Excitation frequency (THz)')
+            ax2.set_xlabel('Detection frequency (THz)')
+            ax2.set_xlim((0, 4))
+            ax2.set_ylim((-4, 5))
+            
+            plt.tight_layout()
+            
+            # 清理历史图像并挂载
+            js.document.getElementById("mpl-target-2d").innerHTML = ""
+            display(fig2d, target="mpl-target-2d", append=False)
+            
+            js.onPython2DDone()
+
+        # Binding and Execution
+        js.window.py_redraw = create_proxy(run_simulation)
+        js.window.py_calc_2d = create_proxy(calculate_2D)
+        
+        run_simulation()
+        js.onPythonInit()
+    </script>
+</body>
+</html>
