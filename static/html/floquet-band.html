@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Floquet band</title>
-    
+
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -20,62 +21,154 @@
             padding-bottom: 15px;
             border-bottom: 2px solid #eee;
         }
+
         .model-block h2 {
             border-bottom: none;
             padding-bottom: 0;
             margin-bottom: 10px;
         }
+
         .model-block .math-display {
-            font-size: 0.9rem; /* 稍微缩小字号以适应 300px 的面板宽度 */
-            overflow-x: auto;  /* 如果公式太长可以横向滚动，避免撑破 UI */
+            font-size: 0.9rem;
+            /* 稍微缩小字号以适应 300px 的面板宽度 */
+            overflow-x: auto;
+            /* 如果公式太长可以横向滚动，避免撑破 UI */
             padding: 10px 0;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f6f9; color: #333; }
-        .container { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1300px; margin: 0 auto; }
-        
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
         /* 左侧控制面板 */
-        .controls { 
-            flex: 1; min-width: 300px; max-width: 350px;
-            background: white; padding: 25px; 
-            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        .controls {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             height: fit-content;
         }
-        h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
-        
-        .control-group { margin-bottom: 20px; }
-        .control-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        .value-display { color: #007bff; font-family: monospace; }
-        
-        input[type=range] { width: 100%; cursor: pointer; }
-        
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .value-display {
+            color: #007bff;
+            font-family: monospace;
+        }
+
+        input[type=range] {
+            width: 100%;
+            cursor: pointer;
+        }
+
         /* 状态指示器 */
         #status {
-            margin-top: 10px; padding: 10px; border-radius: 6px; 
-            text-align: center; font-size: 0.85rem; font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: bold;
             display: none;
         }
-        .status-computing { background: #fff3cd; color: #856404; display: block !important; }
-        .status-ready { background: #d4edda; color: #155724; display: none; }
+
+        .status-computing {
+            background: #fff3cd;
+            color: #856404;
+            display: block !important;
+        }
+
+        .status-ready {
+            background: #d4edda;
+            color: #155724;
+            display: none;
+        }
 
         /* 右侧绘图区域 */
-        .plot-area { 
-            flex: 2; min-width: 600px; 
-            background: white; padding: 10px; 
-            border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        .plot-area {
+            flex: 2;
+            min-width: 600px;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             min-height: 600px;
         }
-        
+
         /* 覆盖层:初次加载 */
-        #loading-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(255,255,255,0.95); z-index: 9999; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 15px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div id="loading-overlay">
@@ -86,22 +179,22 @@
 
     <div class="container">
         <div class="controls">
-          <div class="model-block">
-            <h2>Model</h2>
-            <div class="math-display">
-                \[
-                \begin{array}{l}
-                H( k) =\begin{pmatrix}
-                \varepsilon _{v}( k+eA( t)) & d\cdotp E( t)\\
-                d\cdotp E( t) & \varepsilon _{c}( k+eA( t))
-                \end{pmatrix}\\
-                \varepsilon _{v,c}( k) =\pm \Delta \mp 2t\cos( k)
-                \end{array}
-                \]
+            <h2>Model Hamiltonian</h2>
+            <div class="model-block">
+                <div class="math-display">
+                    \[
+                    \begin{array}{l}
+                    H( k) =\begin{pmatrix}
+                    \varepsilon _{v}( k+eA( t)) & d\cdotp E( t)\\
+                    d\cdotp E( t) & \varepsilon _{c}( k+eA( t))
+                    \end{pmatrix}\\
+                    \varepsilon _{v,c}( k) =\pm \Delta \mp 2t\cos( k)
+                    \end{array}
+                    \]
+                </div>
             </div>
-        </div>
             <h2>Parameters</h2>
-            
+
             <div class="control-group">
                 <div class="control-header">
                     <label>Delta (Bandgap)</label>
@@ -151,7 +244,7 @@
             </div>
 
             <div id="status">Calculating...</div>
-            
+
         </div>
 
         <div class="plot-area" id="mpl-target"></div>
@@ -184,7 +277,7 @@
         function triggerPythonRedraw() {
             statusEl.innerText = "Calculating...";
             statusEl.className = "status-computing";
-            
+
             // 使用 setTimeout 让 UI 有机会先渲染出 "Calculating..." 字样
             // 然后再执行 Python 的阻塞计算
             setTimeout(() => {
@@ -200,7 +293,7 @@
             statusEl.className = "status-ready";
             statusEl.style.display = "none";
         }
-        
+
         // Python 初始化完成后调用
         function onPythonInit() {
             document.getElementById("loading-overlay").style.display = "none";
@@ -372,4 +465,5 @@
         
     </script>
 </body>
+
 </html>
