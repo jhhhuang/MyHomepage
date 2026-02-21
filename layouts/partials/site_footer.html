@@ -1,10 +1,7 @@
 <footer class="site-footer">
   {{ partial "hooks/footer" . }}
 
-  {{ if site.Copyright }}
   <p class="powered-by">
-    {{ replace site.Copyright "{year}" now.Year | markdownify }}
+    © {{ now.Year }} Junhan Huang.
   </p>
-  {{ end }}
-  
-  </footer>
+</footer>
