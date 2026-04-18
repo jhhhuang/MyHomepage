@@ -61,12 +61,12 @@ arXiv: 2506.04697 (2025)
 
 T. Hu, B. Li, S. Xu, S. Wu, Q. Wu, <u>**J. Huang**</u>, Q. Liu, X. Zhou, J. Yuan, D. Wu, T. Dong, J. Hu, H. Weng, N. Wang
 
-**_npj Quantum Materials_** in press
+_npj Quantum Materials_ in press
 
 ### [Stabilization and destabilization of multimode solitons in nonlinear degenerate multi-pass cavities](https://arxiv.org/abs/2501.13319)
 
 <u>**J. Huang**</u>, B. Zhu, S. Li, K. Ding, Z. Tao*
 
-arXiv: 2501.13319 (2025), **_Light: Science & Applications_** in press
+arXiv: 2501.13319 (2025), _Light: Science & Applications_ in press
 
 </div>
