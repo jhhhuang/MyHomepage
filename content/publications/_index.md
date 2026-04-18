@@ -47,11 +47,11 @@ header:
 ## Current
 ### [Efficient high-harmonic generation in van der Waals ferroelectric NbOI$_2$ crystals](https://arxiv.org/abs/2601.21273)
 
-T. Hu, F. Li, <u>**J. Huang**</u>, C. Qian, R. Ding, H. Wang, Q. Liu, Q. Wu, R. Lu, C. Zhang, N. Wang. arXiv:2601.21273 (2026).
+T. Hu, F. Li, <u>**J. Huang**</u>, C. Qian, R. Ding, H. Wang, Q. Liu, Q. Wu, R. Lu, C. Zhang, N. Wang, arXiv:2601.21273 (2026).
 
 ### [Ultrafast orbital-selective photodoping melts charge order in overdoped Bi-based cuprates](https://arxiv.org/abs/2506.04697)
 
-X. Jiang, Q. Li, Q. Qiu, L. Yue, <u>**J. Huang**</u>, Y. Chen, B. Lee, H. Choi, X. Zhou, T. Dong, N. Wang, H. Jang, Y. Peng. arXiv: 2506.04697 (2025).
+X. Jiang, Q. Li, Q. Qiu, L. Yue, <u>**J. Huang**</u>, Y. Chen, B. Lee, H. Choi, X. Zhou, T. Dong, N. Wang, H. Jang, Y. Peng, arXiv: 2506.04697 (2025).
 
 ### [Charge density wave transition of pristine and organic-intercalated 1T-VSe$_2$ studied by infrared spectroscopy](https://www.researchsquare.com/article/rs-6260420/v1)
 
@@ -59,6 +59,6 @@ T. Hu, B. Li, S. Xu, S. Wu, Q. Wu, <u>**J. Huang**</u>, Q. Liu, X. Zhou, J. Yuan
 
 ### [Stabilization and destabilization of multimode solitons in nonlinear degenerate multi-pass cavities](https://arxiv.org/abs/2501.13319)
 
-<u>**J. Huang**</u>, B. Zhu, S. Li, K. Ding, Z. Tao*. arXiv: 2501.13319 (2025).
+<u>**J. Huang**</u>, B. Zhu, S. Li, K. Ding, Z. Tao*, arXiv: 2501.13319 (2025), **_Light: Science & Applications_** in press.
 
 </div>
