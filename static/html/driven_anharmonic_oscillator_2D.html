@@ -388,8 +388,8 @@
             # 时域二维图
             ax1 = plt.subplot(121)
             cf1 = ax1.contourf(times, taus, data, cmap='seismic', levels=100, norm=norm)
-            ax1.set_xlabel('Excitation time (ps)')
-            ax1.set_ylabel('Detection time (ps)')
+            ax1.set_xlabel('Detection time (ps)')
+            ax1.set_ylabel('Excitation time (ps)')
             ax1.set_xlim((-10, 20))
 
             # 频域二维图 (FFT2)
