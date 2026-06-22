@@ -281,7 +281,7 @@
             freq_thz, spec_thz = myfft_with_padding(times, EA)
             ax2.plot(w_arr/(2*np.pi), np.abs(X_spec)/np.max(np.abs(X_spec)), lw=2, label="Oscillator response")
             ax2.fill_between(freq_thz, 0, np.abs(spec_thz)/np.max(np.abs(spec_thz)), color='gray', alpha=0.3, label="THz spectrum")
-            ax2.set_xlabel("Frequency (THz)"); ax2.set_xlim(0, 5)
+            ax2.set_xlabel("Frequency (THz)"); ax2.set_xlim(0, 6)
             ax2.legend(loc='upper right', fontsize='small'); ax2.grid(True, alpha=0.15)
 
             # Subplot 3
@@ -297,7 +297,7 @@
             ax4 = plt.subplot(224)
             freq_Q, y_fft = myfft_with_padding(times, y, left_pad=10, right_pad=10, window_func=np.hanning)
             ax4.plot(freq_Q, np.abs(y_fft)/np.max(np.abs(y_fft)), color='purple', lw=2)
-            ax4.set_xlim(0, 5); ax4.set_xlabel("Frequency (THz)")
+            ax4.set_xlim(0, 6); ax4.set_xlabel("Frequency (THz)")
             ax4.grid(True, alpha=0.15)
 
             plt.tight_layout()
@@ -404,8 +404,8 @@
             cf2 = ax2.contourf(FT, FTAU, data_fft2, cmap='terrain_r', levels=level)
             ax2.set_ylabel('Excitation frequency (THz)')
             ax2.set_xlabel('Detection frequency (THz)')
-            ax2.set_xlim((0, 4))
-            ax2.set_ylim((-4, 5))
+            ax2.set_xlim((0, 6))
+            ax2.set_ylim((-6, 6))
             
             plt.tight_layout()
             
