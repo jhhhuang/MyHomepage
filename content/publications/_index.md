@@ -47,7 +47,7 @@ header:
 ## Current
 ### [Coherent seeding and control of dynamical ferroelectricity by phonon anharmonicity](https://arxiv.org/abs/2606.22896)
 
-<u>**J. Huang**</u>#, Y. Ju#, X. Wang*, L. Yue, Hao Wang, Q. Liu, T. Hu, Y. Cui, L. Shi, S. Wu, S. Zhang, D. Wu, P. Tang*, Tao Dong*, N.-L. Wang*
+<u>**J. Huang**</u>#, Y. Ju#, X. Wang*, L. Yue, H. Wang, Q. Liu, T. Hu, Y. Cui, L. Shi, S. Wu, S. Zhang, D. Wu, P. Tang*, Tao Dong*, N.-L. Wang*
 
 arXiv:2606.22896 (2026)
 
