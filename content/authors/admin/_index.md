@@ -9,7 +9,7 @@ interests:
 social:
   - icon: orcid
     icon_pack: ai
-    link: mailto: https://orcid.org/0009-0004-8752-3441
+    link: https://orcid.org/0009-0004-8752-3441
   - icon: github
     icon_pack: fab
     link: https://github.com/jhhhuang
