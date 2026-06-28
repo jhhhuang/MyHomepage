@@ -3,8 +3,8 @@ title: Junhan Huang
 role: Graduate Student
 bio: Ultrafast & Condensed Matter Physics
 interests:
-  - Ultrafast Physics
-  - Strongly-correlated systems
+  - Ultrafast physics
+  - Quantum materials
   - Light-matter interactions
 social:
   - icon: envelope
