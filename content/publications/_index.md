@@ -64,13 +64,13 @@ X. Jiang, Q. Li, Q. Qiu, L. Yue, <u>**J. Huang**</u>, Y. Chen, B. Lee, H. Choi, 
 arXiv: 2506.04697 (2025)
 
 
-### [Stabilization and destabilization of multimode solitons in nonlinear degenerate multi-pass cavities](https://arxiv.org/abs/2501.13319)
+## 2026
+### [Stabilization and destabilization of multimode solitons in nonlinear degenerate multi-pass cavities](https://www.nature.com/articles/s41377-026-02327-0)
 
 <u>**J. Huang**</u>, B. Zhu, S. Li, K. Ding, Z. Tao*
 
-arXiv: 2501.13319 (2025), _Light: Science & Applications_ in press
+_Light: Science & Applications_ **15**, 287 (2026)
 
-## 2026
 ### [Charge density wave transition of pristine and organic-intercalated 1T-VSe$_2$ studied by infrared spectroscopy](https://www.nature.com/articles/s41535-026-00886-4)
 
 T. Hu, B. Li, S. Xu, S. Wu, Q. Wu, <u>**J. Huang**</u>, Q. Liu, X. Zhou, J. Yuan, D. Wu, T. Dong, J. Hu, H. Weng, N.-L. Wang
