@@ -7,9 +7,9 @@ interests:
   - Quantum materials
   - Light-matter interactions
 social:
-  - icon: envelope
-    icon_pack: fas
-    link: mailto:jhhuang@stu.pku.edu.cn
+  - icon: orcid
+    icon_pack: ai
+    link: mailto: https://orcid.org/0009-0004-8752-3441
   - icon: github
     icon_pack: fab
     link: https://github.com/jhhhuang
