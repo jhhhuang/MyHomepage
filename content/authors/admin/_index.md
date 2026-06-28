@@ -32,4 +32,4 @@ superuser: true
 highlight_name: true
 ---
 I'm a Ph.D. student at [Peking University](https://www.pku.edu.cn/). I got my bachelor degree in Physics at [Fudan University](https://www.fudan.edu.cn/).
-I am interested in understanding and controlling non-equilibrium phenomena in quantum materials. My experimental techniques include nonlinear terahertz spectroscopy and multi-dimensional spectroscopy.
+I am interested in understanding and controlling non-equilibrium phenomena in quantum materials. My techniques include nonlinear terahertz spectroscopy, multi-dimensional spectroscopy, and DFT calculations.
