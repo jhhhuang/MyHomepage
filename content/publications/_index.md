@@ -75,6 +75,6 @@ _Light: Science & Applications_ **15**, 287 (2026)
 
 T. Hu, B. Li, S. Xu, S. Wu, Q. Wu, <u>**J. Huang**</u>, Q. Liu, X. Zhou, J. Yuan, D. Wu, T. Dong, J. Hu, H. Weng, N.-L. Wang
 
-_npj Quantum Materials_ (2026)
+_npj Quantum Materials_ **11**, 76 (2026)
 
 </div>
