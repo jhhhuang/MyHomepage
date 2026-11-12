@@ -65,6 +65,12 @@ arXiv: 2506.04697 (2025)
 
 
 ## 2026
+### [Unveiling High-Energy Ultrafast Responses Driven by Fermi-Level Gap Opening in Charge-Density Waves](https://journals.aps.org/prl/abstract/10.1103/vz71-r52l)
+
+Q. Wu#,\*, T. Hu#,\*, <u>**J. Huang**</u>, Y. Liu, F. Sun, S. Xu, L. Yue, Z. Lin, X. Zhou, T. Dong, N.-L. Wang*
+
+_Physical Review Letters_ **137**, 206902 (2026)
+
 ### [Stabilization and destabilization of multimode solitons in nonlinear degenerate multi-pass cavities](https://www.nature.com/articles/s41377-026-02327-0)
 
 <u>**J. Huang**</u>, B. Zhu, S. Li, K. Ding, Z. Tao*
