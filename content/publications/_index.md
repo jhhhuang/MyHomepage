@@ -45,6 +45,12 @@ header:
 (\# equal contribution, * corresponding author)
 
 ## Current
+### [Revealing Hidden Inversion Symmetry Breaking in ZrTe via Phonon-Assisted Heterodyne Amplification](https://arxiv.org/abs/2609.12359)
+
+S.  Li, <u>**J. Huang**</u>, H. Wu, S. Zheng, C. Kong, B. Xu, H. Wang, T. Dong, L. Yue, D. Wu, Y. Wan, Z. Li, X. Wang, S. Zhang, N.-L. Wang, Y. Li
+
+arXiv:2609.12359 (2026)
+
 ### [Coherent seeding and control of dynamical ferroelectricity by phonon anharmonicity](https://arxiv.org/abs/2606.22896)
 
 <u>**J. Huang**</u>#, Y. Ju#, X. Wang*, L. Yue, H. Wang, Q. Liu, T. Hu, Y. Cui, L. Shi, S. Wu, S. Zhang, D. Wu, P. Tang*, Tao Dong*, N.-L. Wang*
