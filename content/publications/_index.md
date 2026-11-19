@@ -45,7 +45,7 @@ header:
 (\# equal contribution, * corresponding author)
 
 ## Current
-### [Revealing Hidden Inversion Symmetry Breaking in ZrTe via Phonon-Assisted Heterodyne Amplification](https://arxiv.org/abs/2609.12359)
+### [Revealing Hidden Inversion Symmetry Breaking in ZrTe$_5$ via Phonon-Assisted Heterodyne Amplification](https://arxiv.org/abs/2609.12359)
 
 S.  Li, <u>**J. Huang**</u>, H. Wu, S. Zheng, C. Kong, B. Xu, H. Wang, T. Dong, L. Yue, D. Wu, Y. Wan, Z. Li, X. Wang, S. Zhang, N.-L. Wang, Y. Li
 
